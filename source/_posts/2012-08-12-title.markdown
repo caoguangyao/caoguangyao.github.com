@@ -6,9 +6,9 @@ comments: true
 categories: 
 ---
 
-* install xcode
+1.install xcode
 
-* install homebrew    
+2.install homebrew    
 
     $ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"  
     $ brew update
