@@ -12,4 +12,55 @@ categories:
 
     $ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"  
     $ brew update
+3.install git
 
+	$ brew install git
+	
+4.install RVM
+	
+	$ bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+
+5.install ruby
+
+	$ rvm install 1.9.3
+
+6.install Pow
+
+	curl get.pow.cx | sh
+	
+7.download octopress
+
+	$ git clone git://github.com/imathis/octopress.git octopress
+	$ cd octopress
+
+8.install some tools
+
+	$ gem install bundler
+	$ rbenv rehash
+	$ bundle install
+	$ rake install
+9.test localhost view
+
+	rake preview
+	
+10.go to github website,and new a repository with the name "yourusername.github.com"
+
+11.set octopress data
+
+	$ rake setup_github_pages
+
+12.generate html files
+
+	$ rake generate
+	
+13.deploy it
+
+	$ rake deploy
+then wait several minutes for github update the site.
+
+14.post an article
+
+	rake new_post['article_title']
+in octopress/source/_post/ will make a markdown file
+
+	
