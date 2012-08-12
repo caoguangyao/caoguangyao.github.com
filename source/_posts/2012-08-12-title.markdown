@@ -9,6 +9,7 @@ categories:
 * install xcode
 
 * install homebrew    
+
     $ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"  
     $ brew update
 
