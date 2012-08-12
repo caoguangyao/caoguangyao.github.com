@@ -1,0 +1,17 @@
+---
+layout: post
+title: "octopress to github on mac"
+date: 2012-08-12 17:09
+comments: true
+categories: 
+---
+
+* install xcode
+
+* install homebrew    
+(~
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+$ brew update
+ 
+)
+
