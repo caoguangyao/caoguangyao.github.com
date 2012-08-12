@@ -1,16 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[Yes,It's mE.]]></title>
   <link href="http://caoguangyao.github.com/atom.xml" rel="self"/>
   <link href="http://caoguangyao.github.com/"/>
-  <updated>2012-08-12T16:28:25+08:00</updated>
+  <updated>2012-08-12T21:58:44+08:00</updated>
   <id>http://caoguangyao.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Cao.Guangyao]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[octopress to github on mac]]></title>
+    <link href="http://caoguangyao.github.com/blog/2012/08/12/title/"/>
+    <updated>2012-08-12T17:09:00+08:00</updated>
+    <id>http://caoguangyao.github.com/blog/2012/08/12/title</id>
+    <content type="html"><![CDATA[<p>1.install xcode</p>
+
+<p>2.install homebrew</p>
+
+<pre><code>$ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"  
+$ brew update
+</code></pre>
+
+<p>3.install git</p>
+
+<pre><code>$ brew install git
+</code></pre>
+
+<p>4.install RVM</p>
+
+<pre><code>$ bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+</code></pre>
+
+<p>5.install ruby</p>
+
+<pre><code>$ rvm install 1.9.3
+</code></pre>
+
+<p>6.install Pow</p>
+
+<pre><code>curl get.pow.cx | sh
+</code></pre>
+
+<p>7.download octopress</p>
+
+<pre><code>$ git clone git://github.com/imathis/octopress.git octopress
+$ cd octopress
+</code></pre>
+
+<p>8.install some tools</p>
+
+<pre><code>$ gem install bundler
+$ rbenv rehash
+$ bundle install
+$ rake install
+</code></pre>
+
+<p>9.test localhost view</p>
+
+<pre><code>rake preview
+</code></pre>
+
+<p>10.go to github website,and new a repository with the name &#8220;yourusername.github.com&#8221;</p>
+
+<p>11.set octopress data</p>
+
+<pre><code>$ rake setup_github_pages
+</code></pre>
+
+<p>12.generate html files</p>
+
+<pre><code>$ rake generate
+</code></pre>
+
+<p>13.deploy it</p>
+
+<pre><code>$ rake deploy
+</code></pre>
+
+<p>then wait several minutes for github update the site.</p>
+
+<p>14.post an article</p>
+
+<pre><code>rake new_post['article_title']
+</code></pre>
+
+<p>in octopress/source/_post/ will make a markdown file</p>
+]]></content>
+  </entry>
   
 </feed>
