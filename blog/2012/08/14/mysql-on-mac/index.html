@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>octopress to github on mac - Yes,It's mE.</title>
+  <title>mysql_on_mac - Yes,It's mE.</title>
   <meta name="author" content="Cao.Guangyao">
 
   
-  <meta name="description" content="1.install xcode 2.install homebrew $ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)" $ brew update 3.install git $ brew install &hellip;">
+  <meta name="description" content="1.download mysql from mysql website.it&#8217;s a dmg file,
+open the dmg file 4 files in it.install the pkg file and the prefPane file 2.to use mysql &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://caoguangyao.github.com/blog/2012/08/12/title/">
+  <link rel="canonical" href="http://caoguangyao.github.com/blog/2012/08/14/mysql-on-mac/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -67,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Octopress to Github on Mac</h1>
+      <h1 class="entry-title">Mysql_on_mac</h1>
     
     
       <p class="meta">
@@ -83,85 +84,31 @@
   
 
 
-<time datetime="2012-08-12T17:09:00+08:00" pubdate data-updated="true">Aug 12<span>th</span>, 2012</time>
+<time datetime="2012-08-14T20:56:00+08:00" pubdate data-updated="true">Aug 14<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>1.install xcode</p>
+<div class="entry-content"><p>1.download mysql from mysql website.it&#8217;s a dmg file,
+open the dmg file 4 files in it.install the pkg file and the prefPane file</p>
 
-<p>2.install homebrew</p>
+<p>2.to use mysql command in the terminal,modify the /etc/bashrc file</p>
 
-<pre><code>$ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"  
-$ brew update
+<pre><code>#mysql
+alias mysql='/usr/local/mysql/bin/mysql'
+alias mysqladmin='/usr/local/mysql/bin/mysqladmin'
 </code></pre>
 
-<p>3.install git</p>
+<p>add in the end of bashrc file.</p>
 
-<pre><code>$ brew install git
+<p>3.reopen the terminal,try use mysql command.</p>
+
+<p>4.use mysqladmin to set root user</p>
+
+<pre><code>mysqladmin -u root password mysqlpassword 
 </code></pre>
-
-<p>4.install RVM</p>
-
-<pre><code>$ bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
-</code></pre>
-
-<p>5.install ruby</p>
-
-<pre><code>$ rvm install 1.9.3
-</code></pre>
-
-<p>6.install Pow</p>
-
-<pre><code>curl get.pow.cx | sh
-</code></pre>
-
-<p>7.download octopress</p>
-
-<pre><code>$ git clone git://github.com/imathis/octopress.git octopress
-$ cd octopress
-</code></pre>
-
-<p>8.install some tools</p>
-
-<pre><code>$ gem install bundler
-$ rbenv rehash
-$ bundle install
-$ rake install
-</code></pre>
-
-<p>9.test localhost view</p>
-
-<pre><code>rake preview
-</code></pre>
-
-<p>10.go to github website,and new a repository with the name &#8220;yourusername.github.com&#8221;</p>
-
-<p>11.set octopress data</p>
-
-<pre><code>$ rake setup_github_pages
-</code></pre>
-
-<p>12.generate html files</p>
-
-<pre><code>$ rake generate
-</code></pre>
-
-<p>13.deploy it</p>
-
-<pre><code>$ rake deploy
-</code></pre>
-
-<p>then wait several minutes for github update the site.</p>
-
-<p>14.post an article</p>
-
-<pre><code>rake new_post['article_title']
-</code></pre>
-
-<p>in octopress/source/_post/ will make a markdown file</p>
 </div>
 
 
@@ -184,7 +131,7 @@ $ rake install
   
 
 
-<time datetime="2012-08-12T17:09:00+08:00" pubdate data-updated="true">Aug 12<span>th</span>, 2012</time>
+<time datetime="2012-08-14T20:56:00+08:00" pubdate data-updated="true">Aug 14<span>th</span>, 2012</time>
       
 
 
@@ -192,7 +139,7 @@ $ rake install
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caoguangyao.github.com/blog/2012/08/12/title/" data-via="" data-counturl="http://caoguangyao.github.com/blog/2012/08/12/title/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caoguangyao.github.com/blog/2012/08/14/mysql-on-mac/" data-via="" data-counturl="http://caoguangyao.github.com/blog/2012/08/14/mysql-on-mac/" >Tweet</a>
   
   
   
@@ -201,8 +148,8 @@ $ rake install
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2012/08/12/title/" title="Previous Post: octopress to github on mac">&laquo; octopress to github on mac</a>
       
-        <a class="basic-alignment right" href="/blog/2012/08/14/mysql-on-mac/" title="Next Post: mysql_on_mac">mysql_on_mac &raquo;</a>
       
     </p>
   </footer>

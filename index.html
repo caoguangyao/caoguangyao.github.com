@@ -9,7 +9,8 @@
   <meta name="author" content="Cao.Guangyao">
 
   
-  <meta name="description" content="1.install xcode 2.install homebrew $ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)" $ brew update 3.install git $ brew install &hellip;">
+  <meta name="description" content="1.download mysql from mysql website.it&#8217;s a dmg file,
+open the dmg file 4 files in it.install the pkg file and the prefPane file 2.to use mysql &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +65,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/14/mysql-on-mac/">Mysql_on_mac</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-14T20:56:00+08:00" pubdate data-updated="true">Aug 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>1.download mysql from mysql website.it&#8217;s a dmg file,
+open the dmg file 4 files in it.install the pkg file and the prefPane file</p>
+
+<p>2.to use mysql command in the terminal,modify the /etc/bashrc file</p>
+
+<pre><code>#mysql
+alias mysql='/usr/local/mysql/bin/mysql'
+alias mysqladmin='/usr/local/mysql/bin/mysqladmin'
+</code></pre>
+
+<p>add in the end of bashrc file.</p>
+
+<p>3.reopen the terminal,try use mysql command.</p>
+
+<p>4.use mysqladmin to set root user</p>
+
+<pre><code>mysqladmin -u root password mysqlpassword 
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -183,6 +237,10 @@ $ rake install
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/08/14/mysql-on-mac/">mysql_on_mac</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/08/12/title/">octopress to github on mac</a>

@@ -4,7 +4,7 @@
   <title><![CDATA[Yes,It's mE.]]></title>
   <link href="http://caoguangyao.github.com/atom.xml" rel="self"/>
   <link href="http://caoguangyao.github.com/"/>
-  <updated>2012-08-12T21:58:44+08:00</updated>
+  <updated>2012-08-14T21:03:12+08:00</updated>
   <id>http://caoguangyao.github.com/</id>
   <author>
     <name><![CDATA[Cao.Guangyao]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[mysql_on_mac]]></title>
+    <link href="http://caoguangyao.github.com/blog/2012/08/14/mysql-on-mac/"/>
+    <updated>2012-08-14T20:56:00+08:00</updated>
+    <id>http://caoguangyao.github.com/blog/2012/08/14/mysql-on-mac</id>
+    <content type="html"><![CDATA[<p>1.download mysql from mysql website.it&#8217;s a dmg file,
+open the dmg file 4 files in it.install the pkg file and the prefPane file</p>
+
+<p>2.to use mysql command in the terminal,modify the /etc/bashrc file</p>
+
+<pre><code>#mysql
+alias mysql='/usr/local/mysql/bin/mysql'
+alias mysqladmin='/usr/local/mysql/bin/mysqladmin'
+</code></pre>
+
+<p>add in the end of bashrc file.</p>
+
+<p>3.reopen the terminal,try use mysql command.</p>
+
+<p>4.use mysqladmin to set root user</p>
+
+<pre><code>mysqladmin -u root password mysqlpassword 
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[octopress to github on mac]]></title>
