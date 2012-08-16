@@ -4,7 +4,7 @@
   <title><![CDATA[Yes,It's mE.]]></title>
   <link href="http://caoguangyao.github.com/atom.xml" rel="self"/>
   <link href="http://caoguangyao.github.com/"/>
-  <updated>2012-08-14T21:04:05+08:00</updated>
+  <updated>2012-08-16T22:29:40+08:00</updated>
   <id>http://caoguangyao.github.com/</id>
   <author>
     <name><![CDATA[Cao.Guangyao]]></name>
@@ -12,6 +12,78 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[os x lion mysql python]]></title>
+    <link href="http://caoguangyao.github.com/blog/2012/08/16/os-x-lion-mysql-python/"/>
+    <updated>2012-08-16T22:11:00+08:00</updated>
+    <id>http://caoguangyao.github.com/blog/2012/08/16/os-x-lion-mysql-python</id>
+    <content type="html"><![CDATA[<p>1.after install mysql on mac.pls be sure the version of mysql.</p>
+
+<pre><code>file /usr/local/mysql/bin/mysql
+</code></pre>
+
+<p>it may be show</p>
+
+<pre><code>/usr/local/mysql/bin/mysql: Mach-O 64-bit executable x86_64
+</code></pre>
+
+<p>2.download mysql-python package.</p>
+
+<pre><code>wget http://download.sourceforge.net/sourceforge/mysql-python/MySQL-python-1.2.3.tar.gz
+
+tar zxvf MySQL-python-1.2.3.tar.gz
+cd MySQL-python1.2.3
+</code></pre>
+
+<p>3.change the site.cfg in line 13</p>
+
+<pre><code>#mysql_config = /usr/local/bin/mysql_config
+</code></pre>
+
+<p>to:</p>
+
+<pre><code>mysql_config = /usr/local/mysql/bin/mysql_config
+</code></pre>
+
+<p>4.build and install from source.</p>
+
+<pre><code>sudo ARCHFLAGS='-arch x86_64' python setup.py build
+sudo ARCHFLAGS='-arch x86_64' python setup.py install
+</code></pre>
+
+<p>if mysql is a version of i386,use the command:</p>
+
+<pre><code>sudo ARCHFLAGS='-arch i386' python setup.py build
+sudo ARCHFLAGS='-arch i386' python setup.py install
+</code></pre>
+
+<p>5.go to python shell</p>
+
+<pre><code>import MySQLdb
+</code></pre>
+
+<p>if raise error:</p>
+
+<pre><code>ImportError: dlopen(/Users/cgy8888/.python-eggs/MySQL_python-1.2.3-py2.6-macosx-10.7-x86_64.egg-tmp/_mysql.so, 2): Library not loaded: libmysqlclient.18.dylib
+Referenced from: /Users/cgy8888/.python-eggs/MySQL_python-1.2.3-py2.6-macosx-10.7-x86_64.egg-tmp/_mysql.so
+Reason: image not found
+</code></pre>
+
+<p>fixed it by doing the following:</p>
+
+<pre><code>sudo ln -s /usr/local/mysql/lib/libmysqlclient.18.dylib /usr/lib/libmysqlclient.18.dylib
+sudo ln -s /usr/local/mysql/lib /usr/local/mysql/lib/mysql
+</code></pre>
+
+<p>now go to django project and run:</p>
+
+<pre><code>python manage.py syncdb
+</code></pre>
+
+<p>it will work now.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[mysql_on_mac]]></title>

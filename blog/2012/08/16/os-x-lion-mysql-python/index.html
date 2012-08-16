@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>octopress to github on mac - Yes,It's mE.</title>
+  <title>os x lion mysql python - Yes,It's mE.</title>
   <meta name="author" content="Cao.Guangyao">
 
   
-  <meta name="description" content="1.install xcode 2.install homebrew $ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)" $ brew update 3.install git $ brew install &hellip;">
+  <meta name="description" content="1.after install mysql on mac.pls be sure the version of mysql. file /usr/local/mysql/bin/mysql it may be show /usr/local/mysql/bin/mysql: Mach-O 64- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://caoguangyao.github.com/blog/2012/08/12/title/">
+  <link rel="canonical" href="http://caoguangyao.github.com/blog/2012/08/16/os-x-lion-mysql-python/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -67,7 +67,7 @@
   
   <header>
     
-      <h1 class="entry-title">Octopress to Github on Mac</h1>
+      <h1 class="entry-title">Os X Lion Mysql Python</h1>
     
     
       <p class="meta">
@@ -83,85 +83,77 @@
   
 
 
-<time datetime="2012-08-12T17:09:00+08:00" pubdate data-updated="true">Aug 12<span>th</span>, 2012</time>
+<time datetime="2012-08-16T22:11:00+08:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>1.install xcode</p>
+<div class="entry-content"><p>1.after install mysql on mac.pls be sure the version of mysql.</p>
 
-<p>2.install homebrew</p>
-
-<pre><code>$ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"  
-$ brew update
+<pre><code>file /usr/local/mysql/bin/mysql
 </code></pre>
 
-<p>3.install git</p>
+<p>it may be show</p>
 
-<pre><code>$ brew install git
+<pre><code>/usr/local/mysql/bin/mysql: Mach-O 64-bit executable x86_64
 </code></pre>
 
-<p>4.install RVM</p>
+<p>2.download mysql-python package.</p>
 
-<pre><code>$ bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+<pre><code>wget http://download.sourceforge.net/sourceforge/mysql-python/MySQL-python-1.2.3.tar.gz
+
+tar zxvf MySQL-python-1.2.3.tar.gz
+cd MySQL-python1.2.3
 </code></pre>
 
-<p>5.install ruby</p>
+<p>3.change the site.cfg in line 13</p>
 
-<pre><code>$ rvm install 1.9.3
+<pre><code>#mysql_config = /usr/local/bin/mysql_config
 </code></pre>
 
-<p>6.install Pow</p>
+<p>to:</p>
 
-<pre><code>curl get.pow.cx | sh
+<pre><code>mysql_config = /usr/local/mysql/bin/mysql_config
 </code></pre>
 
-<p>7.download octopress</p>
+<p>4.build and install from source.</p>
 
-<pre><code>$ git clone git://github.com/imathis/octopress.git octopress
-$ cd octopress
+<pre><code>sudo ARCHFLAGS='-arch x86_64' python setup.py build
+sudo ARCHFLAGS='-arch x86_64' python setup.py install
 </code></pre>
 
-<p>8.install some tools</p>
+<p>if mysql is a version of i386,use the command:</p>
 
-<pre><code>$ gem install bundler
-$ rbenv rehash
-$ bundle install
-$ rake install
+<pre><code>sudo ARCHFLAGS='-arch i386' python setup.py build
+sudo ARCHFLAGS='-arch i386' python setup.py install
 </code></pre>
 
-<p>9.test localhost view</p>
+<p>5.go to python shell</p>
 
-<pre><code>rake preview
+<pre><code>import MySQLdb
 </code></pre>
 
-<p>10.go to github website,and new a repository with the name &#8220;yourusername.github.com&#8221;</p>
+<p>if raise error:</p>
 
-<p>11.set octopress data</p>
-
-<pre><code>$ rake setup_github_pages
+<pre><code>ImportError: dlopen(/Users/cgy8888/.python-eggs/MySQL_python-1.2.3-py2.6-macosx-10.7-x86_64.egg-tmp/_mysql.so, 2): Library not loaded: libmysqlclient.18.dylib
+Referenced from: /Users/cgy8888/.python-eggs/MySQL_python-1.2.3-py2.6-macosx-10.7-x86_64.egg-tmp/_mysql.so
+Reason: image not found
 </code></pre>
 
-<p>12.generate html files</p>
+<p>fixed it by doing the following:</p>
 
-<pre><code>$ rake generate
+<pre><code>sudo ln -s /usr/local/mysql/lib/libmysqlclient.18.dylib /usr/lib/libmysqlclient.18.dylib
+sudo ln -s /usr/local/mysql/lib /usr/local/mysql/lib/mysql
 </code></pre>
 
-<p>13.deploy it</p>
+<p>now go to django project and run:</p>
 
-<pre><code>$ rake deploy
+<pre><code>python manage.py syncdb
 </code></pre>
 
-<p>then wait several minutes for github update the site.</p>
-
-<p>14.post an article</p>
-
-<pre><code>rake new_post['article_title']
-</code></pre>
-
-<p>in octopress/source/_post/ will make a markdown file</p>
+<p>it will work now.</p>
 </div>
 
 
@@ -184,7 +176,7 @@ $ rake install
   
 
 
-<time datetime="2012-08-12T17:09:00+08:00" pubdate data-updated="true">Aug 12<span>th</span>, 2012</time>
+<time datetime="2012-08-16T22:11:00+08:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
       
 
 
@@ -192,7 +184,7 @@ $ rake install
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caoguangyao.github.com/blog/2012/08/12/title/" data-via="" data-counturl="http://caoguangyao.github.com/blog/2012/08/12/title/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caoguangyao.github.com/blog/2012/08/16/os-x-lion-mysql-python/" data-via="" data-counturl="http://caoguangyao.github.com/blog/2012/08/16/os-x-lion-mysql-python/" >Tweet</a>
   
   
   
@@ -201,8 +193,8 @@ $ rake install
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2012/08/14/mysql-on-mac/" title="Previous Post: mysql_on_mac">&laquo; mysql_on_mac</a>
       
-        <a class="basic-alignment right" href="/blog/2012/08/14/mysql-on-mac/" title="Next Post: mysql_on_mac">mysql_on_mac &raquo;</a>
       
     </p>
   </footer>

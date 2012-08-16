@@ -9,8 +9,7 @@
   <meta name="author" content="Cao.Guangyao">
 
   
-  <meta name="description" content="1.download mysql from mysql website.it&#8217;s a dmg file,
-open the dmg file 4 files in it.install the pkg file and the prefPane file 2.to use mysql &hellip;">
+  <meta name="description" content="1.after install mysql on mac.pls be sure the version of mysql. file /usr/local/mysql/bin/mysql it may be show /usr/local/mysql/bin/mysql: Mach-O 64- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +64,105 @@ open the dmg file 4 files in it.install the pkg file and the prefPane file 2.to 
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/16/os-x-lion-mysql-python/">Os X Lion Mysql Python</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-16T22:11:00+08:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>1.after install mysql on mac.pls be sure the version of mysql.</p>
+
+<pre><code>file /usr/local/mysql/bin/mysql
+</code></pre>
+
+<p>it may be show</p>
+
+<pre><code>/usr/local/mysql/bin/mysql: Mach-O 64-bit executable x86_64
+</code></pre>
+
+<p>2.download mysql-python package.</p>
+
+<pre><code>wget http://download.sourceforge.net/sourceforge/mysql-python/MySQL-python-1.2.3.tar.gz
+
+tar zxvf MySQL-python-1.2.3.tar.gz
+cd MySQL-python1.2.3
+</code></pre>
+
+<p>3.change the site.cfg in line 13</p>
+
+<pre><code>#mysql_config = /usr/local/bin/mysql_config
+</code></pre>
+
+<p>to:</p>
+
+<pre><code>mysql_config = /usr/local/mysql/bin/mysql_config
+</code></pre>
+
+<p>4.build and install from source.</p>
+
+<pre><code>sudo ARCHFLAGS='-arch x86_64' python setup.py build
+sudo ARCHFLAGS='-arch x86_64' python setup.py install
+</code></pre>
+
+<p>if mysql is a version of i386,use the command:</p>
+
+<pre><code>sudo ARCHFLAGS='-arch i386' python setup.py build
+sudo ARCHFLAGS='-arch i386' python setup.py install
+</code></pre>
+
+<p>5.go to python shell</p>
+
+<pre><code>import MySQLdb
+</code></pre>
+
+<p>if raise error:</p>
+
+<pre><code>ImportError: dlopen(/Users/cgy8888/.python-eggs/MySQL_python-1.2.3-py2.6-macosx-10.7-x86_64.egg-tmp/_mysql.so, 2): Library not loaded: libmysqlclient.18.dylib
+Referenced from: /Users/cgy8888/.python-eggs/MySQL_python-1.2.3-py2.6-macosx-10.7-x86_64.egg-tmp/_mysql.so
+Reason: image not found
+</code></pre>
+
+<p>fixed it by doing the following:</p>
+
+<pre><code>sudo ln -s /usr/local/mysql/lib/libmysqlclient.18.dylib /usr/lib/libmysqlclient.18.dylib
+sudo ln -s /usr/local/mysql/lib /usr/local/mysql/lib/mysql
+</code></pre>
+
+<p>now go to django project and run:</p>
+
+<pre><code>python manage.py syncdb
+</code></pre>
+
+<p>it will work now.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -237,6 +335,10 @@ $ rake install
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/08/16/os-x-lion-mysql-python/">os x lion mysql python</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/08/14/mysql-on-mac/">mysql_on_mac</a>
