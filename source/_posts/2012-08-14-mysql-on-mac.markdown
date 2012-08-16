@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "mysql-on-mac"
+title: "mysql on mac"
 date: 2012-08-14 20:56
 comments: true
 categories: 
