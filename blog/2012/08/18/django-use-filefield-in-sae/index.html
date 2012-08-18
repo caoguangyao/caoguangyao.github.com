@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Yes,It's mE.</title>
+  <title>django use filefield in SAE - Yes,It's mE.</title>
   <meta name="author" content="Cao.Guangyao">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://caoguangyao.github.com">
+  <link rel="canonical" href="http://caoguangyao.github.com/blog/2012/08/18/django-use-filefield-in-sae">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -89,15 +89,13 @@
 </nav>
   <div class="container">
     <div class="row-fluid">
-      <div class="span9">
-  
-  
-  
-    <article>
       
+<article class="hentry span9" role="article">
+
+  
   <header class="page-header">
     
-      <h1 class="entry-title"><a href="/blog/2012/08/18/django-use-filefield-in-sae/">Django Use Filefield in SAE</a></h1>
+      <h1 class="entry-title">Django Use Filefield in SAE</h1>
     
     
       <p class="meta">
@@ -120,7 +118,7 @@
   </header>
 
 
-  <div class="entry-content"><p>sina 有个云平台叫sina app enginee，当然，是山寨google app enginee的。虽然这个东西还在alpha阶段，但是对于我等叼丝程序员来说，免去了购买vps麻烦，免费的总归是好的，即使有点问题，也总比没有的强吧。</p>
+<div class="entry-content"><p>sina 有个云平台叫sina app enginee，当然，是山寨google app enginee的。虽然这个东西还在alpha阶段，但是对于我等叼丝程序员来说，免去了购买vps麻烦，免费的总归是好的，即使有点问题，也总比没有的强吧。</p>
 
 <p>最近研究了好几天的sae的storage。总觉得很不爽，因为官方api给的很笼统，看不明白，网上demo不多，几乎都同一个人转载，当然也有牛人，不过没找到牛人的源码，所以只好自己推敲了。</p>
 
@@ -229,121 +227,16 @@ http://blog.csdn.net/vesslan1029/article/details/7594545
 和falcon同学提供的思路。
 以上。</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/16/os-x-lion-mysql-python/">Os X Lion Mysql Python</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Cao.Guangyao</span></span>
 
-<time datetime="2012-08-16T22:11:00+08:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>1.after install mysql on mac.pls be sure the version of mysql.</p>
-
-<pre><code>file /usr/local/mysql/bin/mysql
-</code></pre>
-
-<p>it may be show</p>
-
-<pre><code>/usr/local/mysql/bin/mysql: Mach-O 64-bit executable x86_64
-</code></pre>
-
-<p>2.download mysql-python package.</p>
-
-<pre><code>wget http://download.sourceforge.net/sourceforge/mysql-python/MySQL-python-1.2.3.tar.gz
-
-tar zxvf MySQL-python-1.2.3.tar.gz
-cd MySQL-python1.2.3
-</code></pre>
-
-<p>3.change the site.cfg in line 13</p>
-
-<pre><code>#mysql_config = /usr/local/bin/mysql_config
-</code></pre>
-
-<p>to:</p>
-
-<pre><code>mysql_config = /usr/local/mysql/bin/mysql_config
-</code></pre>
-
-<p>4.build and install from source.</p>
-
-<pre><code>sudo ARCHFLAGS='-arch x86_64' python setup.py build
-sudo ARCHFLAGS='-arch x86_64' python setup.py install
-</code></pre>
-
-<p>if mysql is a version of i386,use the command:</p>
-
-<pre><code>sudo ARCHFLAGS='-arch i386' python setup.py build
-sudo ARCHFLAGS='-arch i386' python setup.py install
-</code></pre>
-
-<p>5.go to python shell</p>
-
-<pre><code>import MySQLdb
-</code></pre>
-
-<p>if raise error:</p>
-
-<pre><code>ImportError: dlopen(/Users/cgy8888/.python-eggs/MySQL_python-1.2.3-py2.6-macosx-10.7-x86_64.egg-tmp/_mysql.so, 2): Library not loaded: libmysqlclient.18.dylib
-Referenced from: /Users/cgy8888/.python-eggs/MySQL_python-1.2.3-py2.6-macosx-10.7-x86_64.egg-tmp/_mysql.so
-Reason: image not found
-</code></pre>
-
-<p>fixed it by doing the following:</p>
-
-<pre><code>sudo ln -s /usr/local/mysql/lib/libmysqlclient.18.dylib /usr/lib/libmysqlclient.18.dylib
-sudo ln -s /usr/local/mysql/lib /usr/local/mysql/lib/mysql
-</code></pre>
-
-<p>now go to django project and run:</p>
-
-<pre><code>python manage.py syncdb
-</code></pre>
-
-<p>it will work now.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/14/mysql-on-mac/">Mysql on Mac</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -355,151 +248,34 @@ sudo ln -s /usr/local/mysql/lib /usr/local/mysql/lib/mysql
   
 
 
-<time datetime="2012-08-14T20:56:00+08:00" pubdate data-updated="true">Aug 14<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>1.download mysql from mysql website.it&#8217;s a dmg file,
-open the dmg file 4 files in it.install the pkg file and the prefPane file</p>
-
-<p>2.to use mysql command in the terminal,modify the /etc/bashrc file</p>
-
-<pre><code>#mysql
-alias mysql='/usr/local/mysql/bin/mysql'
-alias mysqladmin='/usr/local/mysql/bin/mysqladmin'
-</code></pre>
-
-<p>add in the end of bashrc file.</p>
-
-<p>3.reopen the terminal,try use mysql command.</p>
-
-<p>4.use mysqladmin to set root user</p>
-
-<pre><code>mysqladmin -u root password mysqlpassword 
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2012-08-18T16:17:00+08:00" pubdate data-updated="true">Aug 18<span>th</span>, 2012</time>
       
-  <header class="page-header">
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2012/08/12/title/">Octopress to Github on Mac</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
+      <div class="sharing">
   
-
-
-<time datetime="2012-08-12T17:09:00+08:00" pubdate data-updated="true">Aug 12<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>1.install xcode</p>
-
-<p>2.install homebrew</p>
-
-<pre><code>$ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"  
-$ brew update
-</code></pre>
-
-<p>3.install git</p>
-
-<pre><code>$ brew install git
-</code></pre>
-
-<p>4.install RVM</p>
-
-<pre><code>$ bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
-</code></pre>
-
-<p>5.install ruby</p>
-
-<pre><code>$ rvm install 1.9.3
-</code></pre>
-
-<p>6.install Pow</p>
-
-<pre><code>curl get.pow.cx | sh
-</code></pre>
-
-<p>7.download octopress</p>
-
-<pre><code>$ git clone git://github.com/imathis/octopress.git octopress
-$ cd octopress
-</code></pre>
-
-<p>8.install some tools</p>
-
-<pre><code>$ gem install bundler
-$ rbenv rehash
-$ bundle install
-$ rake install
-</code></pre>
-
-<p>9.test localhost view</p>
-
-<pre><code>rake preview
-</code></pre>
-
-<p>10.go to github website,and new a repository with the name &#8220;yourusername.github.com&#8221;</p>
-
-<p>11.set octopress data</p>
-
-<pre><code>$ rake setup_github_pages
-</code></pre>
-
-<p>12.generate html files</p>
-
-<pre><code>$ rake generate
-</code></pre>
-
-<p>13.deploy it</p>
-
-<pre><code>$ rake deploy
-</code></pre>
-
-<p>then wait several minutes for github update the site.</p>
-
-<p>14.post an article</p>
-
-<pre><code>rake new_post['article_title']
-</code></pre>
-
-<p>in octopress/source/_post/ will make a markdown file</p>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caoguangyao.github.com/blog/2012/08/18/django-use-filefield-in-sae/" data-via="" data-counturl="http://caoguangyao.github.com/blog/2012/08/18/django-use-filefield-in-sae/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
+    
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/08/16/os-x-lion-mysql-python/" title="Previous Post:
+        os x lion mysql python">&laquo; os x lion mysql python</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
+</article>
 
-    </article>
-  
-  <ul class="pager">
-    
-    <li><a href="/blog/archives">Blog Archives</a></li>
-    
-  </ul>
-</div>
 <aside class="sidebar-nav span3">
   
     <section class="well">
@@ -532,6 +308,7 @@ $ rake install
 
   
 </aside>
+
 
     </div>
   </div>
