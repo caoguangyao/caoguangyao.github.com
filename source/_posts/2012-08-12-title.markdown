@@ -10,7 +10,7 @@ categories:
 
 2.install homebrew    
 
-    $ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"  
+    ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
     $ brew update
 3.install git
 
