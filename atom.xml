@@ -4,7 +4,7 @@
   <title><![CDATA[Yes,It's mE.]]></title>
   <link href="http://caoguangyao.github.com/atom.xml" rel="self"/>
   <link href="http://caoguangyao.github.com/"/>
-  <updated>2012-08-18T18:45:03+08:00</updated>
+  <updated>2012-10-16T11:53:48+08:00</updated>
   <id>http://caoguangyao.github.com/</id>
   <author>
     <name><![CDATA[Cao.Guangyao]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[eclipse tips]]></title>
+    <link href="http://caoguangyao.github.com/blog/2012/10/16/eclipse-tips/"/>
+    <updated>2012-10-16T09:28:00+08:00</updated>
+    <id>http://caoguangyao.github.com/blog/2012/10/16/eclipse-tips</id>
+    <content type="html"><![CDATA[<p>1.fix uncode garbled</p>
+
+<p>right click project->properties->Resource->Text file encoding->other->UTF-8</p>
+
+<p>2.auto complete</p>
+
+<p>Windows->Preferences->Java->Editor->Content Asist->replace auto activation triggers for Java &#8220;.&#8221; to &#8220;.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#8221;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[django use filefield in SAE]]></title>
