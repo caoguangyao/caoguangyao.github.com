@@ -4,7 +4,7 @@
   <title><![CDATA[Yes,It's mE.]]></title>
   <link href="http://caoguangyao.github.com/atom.xml" rel="self"/>
   <link href="http://caoguangyao.github.com/"/>
-  <updated>2012-10-16T12:13:40+08:00</updated>
+  <updated>2012-10-18T14:03:10+08:00</updated>
   <id>http://caoguangyao.github.com/</id>
   <author>
     <name><![CDATA[Cao.Guangyao]]></name>
@@ -12,6 +12,180 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[django_in_sae]]></title>
+    <link href="http://caoguangyao.github.com/blog/2012/10/18/django-in-sae/"/>
+    <updated>2012-10-18T13:30:00+08:00</updated>
+    <id>http://caoguangyao.github.com/blog/2012/10/18/django-in-sae</id>
+    <content type="html"><![CDATA[<h3>tools need installed first by order:</h3>
+
+<ul>
+<li>python 2.6 or python 2.7</li>
+<li>django 1.2.7 or above</li>
+<li>mysql</li>
+<li>phpmyadmin</li>
+<li>apache2</li>
+<li>install-tools</li>
+<li>svn</li>
+<li>git</li>
+<li>sae python-sdk tools</li>
+</ul>
+
+
+<p>start a django project:</p>
+
+<pre><code>django-admin.py startproject project
+</code></pre>
+
+<p>start a app:</p>
+
+<pre><code>django-admin.py startapp app
+</code></pre>
+
+<p>modify settings.py file the database config struct</p>
+
+<pre><code>from os import environ
+import sae.const
+
+sae_environ = environ.get('APP_NAME','')
+
+MYSQL_DB = 'your_database_name' 
+MYSQL_USER = 'your_username' 
+MYSQL_PASS = 'your_password' 
+MYSQL_HOST_M = 'your_mysql_host' 
+MYSQL_HOST_S = 'your_mysql_host' 
+MYSQL_PORT = 'your_mysql_port' 
+
+if sae_environ:
+    MYSQL_DB = sae.const.MYSQL_DB 
+    MYSQL_USER = sae.const.MYSQL_USER 
+    MYSQL_PASS = sae.const.MYSQL_PASS 
+    MYSQL_HOST_M = sae.const.MYSQL_HOST 
+    MYSQL_HOST_S = sae.const.MYSQL_HOST_S 
+    MYSQL_PORT = sae.const.MYSQL_PORT
+
+DATABASES = { 
+    'default': { 
+    'ENGINE': 'django.db.backends.mysql', 
+    'NAME': MYSQL_DB, 
+    'USER': MYSQL_USER, 
+    'PASSWORD': MYSQL_PASS, 
+    'HOST': MYSQL_HOST_M, 
+    'PORT': MYSQL_PORT, 
+    } 
+}
+</code></pre>
+
+<p>don&#8217;t foget to add app to INSTALLED_APPS:</p>
+
+<pre><code>INSTALLED_APPS = (
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.admin',
+    'project.app',
+)
+</code></pre>
+
+<p>go to app and add models in models.py</p>
+
+<pre><code>from django.db import models
+from project.settings import sae_environ
+class Data(models.Models):
+    file_name = models.CharField(max_length=100)
+    file_data = models.FileField(upload_to='file')
+    if sae_environ:
+        from project.ready4sae.store import SaeStorage
+        file_data = models.FileField(storage=SaeStorage(domain='your_domain',app='your_app'))
+</code></pre>
+
+<p>then you can use python manage.py syncdb to generate the datebase and the tables</p>
+
+<p>use phpmyadmin to check the database your generated and export it to sql file</p>
+
+<p>now,you can do your views coding.</p>
+
+<p>run the server in local to test by using</p>
+
+<pre><code>dev_server.py --mysql=username:password:mysql_host:mysql_port --storage-path=/your/path/to/storage/your_domain/your_app
+</code></pre>
+
+<p>your must make directory first if you will use the storage sevice for your project</p>
+
+<p>if it runs okey,your can now deploy your project to the sae cloud.</p>
+
+<p>change your index.wsgi file to:</p>
+
+<pre><code>import sae
+import os
+import sys
+import django.core.handlers.wsgi
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'project.settings'
+
+application = sae.create_wsgi_app(django.core.handlers.wsgi.WSGIHandler())
+</code></pre>
+
+<p>log in to your sae account and go to your app,something must do:</p>
+
+<ul>
+<li>init your mysql and import from your sql file</li>
+<li>init your storage</li>
+</ul>
+
+
+<p>over.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[django_create_inmemoryfile]]></title>
+    <link href="http://caoguangyao.github.com/blog/2012/10/18/django-create-inmemoryfile/"/>
+    <updated>2012-10-18T12:51:00+08:00</updated>
+    <id>http://caoguangyao.github.com/blog/2012/10/18/django-create-inmemoryfile</id>
+    <content type="html"><![CDATA[<p>say we have a model like that:</p>
+
+<pre><code>class Data(models.Model):
+    file_name = models.CharField(max_length=100)
+    upload_file = models.FileField(upload_to='data')
+</code></pre>
+
+<p>we what create a file in back,but not save to filesystem.
+so use StringIO create string first</p>
+
+<pre><code>from cStringIO import StringIO
+
+my_str = 'qwer\nasdf\m\n'
+
+buff = StringIO(my_str)
+
+buff.seek(0,2)
+</code></pre>
+
+<p>use InMemoryUploadFile to create the string file</p>
+
+<pre><code>from django.core.files.uploadedfile import InMemoryUploadedFile
+from app.models import Data
+file_name = 'myfile.txt'
+file_data = InMemoryUploadedFile(buf,'file',file_name,None,buff.tell(),None)
+
+d = Data(file_name = file_name)
+d.upload_file.save(file_name,file_data)
+d.save() 
+</code></pre>
+
+<p>untile now we create an InMemoryUploadedFile object and save it to our model.</p>
+
+<p>by the way we can use simpler way to create the file</p>
+
+<pre><code>from django.core.files.base import ContentFile
+
+file_data = ContentFile(buff.getvalue())
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[eclipse tips]]></title>
