@@ -9,15 +9,11 @@
   <meta name="author" content="Cao.Guangyao">
 
   
-  <meta name="description" content="tools need installed first by order: python 2.6 or python 2.7
-django 1.2.7 or above
-mysql
-phpmyadmin
-apache2
-install-tools
-svn
-git
-sae python-sdk &hellip;">
+  <meta name="description" content="Install tiny-mce sodu easy_install django-tinymce How to use add app in settings.py INSTALLED_APPS = (
+…
+'tinymce'
+…
+) if you want replace textarea &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +68,79 @@ sae python-sdk &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/18/django-tinymce/">Django_tinymce</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-18T15:56:00+08:00" pubdate data-updated="true">Oct 18<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/10/18/django-tinymce/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Install tiny-mce</p>
+
+<pre><code>sodu easy_install django-tinymce
+</code></pre>
+
+<h5>How to use</h5>
+
+<p>add app in settings.py</p>
+
+<pre><code>INSTALLED_APPS = (
+…
+'tinymce'
+…
+)
+</code></pre>
+
+<p>if you want replace textarea tag as html editor in admin page, modify your modeladmin like this</p>
+
+<pre><code>from tinymce.widgets import TinyMCE
+    formfield_overrides = {
+        models.TextField:{'widget':TinyMCE(attrs={'cols':80,'rows':20},)},
+    }
+
+    class Media:
+        js = (
+            '/d-media/js/tiny_mce/tiny_mce.js',
+            '/d-media/js/tiny_mce/textareas.js',
+        )
+    class Meta:
+        model = Article
+    …
+</code></pre>
+
+<p>copy the textareas.js to your static media directory.</p>
+
+<p>more adavnce settings in <a href="http://www.tinymce.com/wiki.php">here</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -772,6 +841,10 @@ $ rake install
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/10/18/django-tinymce/">django_tinymce</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/10/18/django-in-sae/">Django in sae</a>
       </li>
     
@@ -785,10 +858,6 @@ $ rake install
     
       <li class="post">
         <a href="/blog/2012/08/18/django-use-filefield-in-sae/">django use filefield in SAE</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/08/16/os-x-lion-mysql-python/">os x lion mysql python</a>
       </li>
     
   </ul>

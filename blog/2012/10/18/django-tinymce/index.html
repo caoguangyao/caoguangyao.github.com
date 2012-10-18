@@ -5,11 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Django create inmemoryfile - Yes,It's mE.</title>
+  <title>django_tinymce - Yes,It's mE.</title>
   <meta name="author" content="Cao.Guangyao">
 
   
-  <meta name="description" content="say we have a model like that: class Data(models.Model): file_name = models.CharField(max_length=100) upload_file = models.FileField(upload_to='data &hellip;">
+  <meta name="description" content="Install tiny-mce sodu easy_install django-tinymce How to use add app in settings.py INSTALLED_APPS = (
+…
+'tinymce'
+…
+) if you want replace textarea &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://caoguangyao.github.com/blog/2012/10/18/django-create-inmemoryfile/">
+  <link rel="canonical" href="http://caoguangyao.github.com/blog/2012/10/18/django-tinymce/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -67,7 +71,7 @@
   
   <header>
     
-      <h1 class="entry-title">Django Create Inmemoryfile</h1>
+      <h1 class="entry-title">Django_tinymce</h1>
     
     
       <p class="meta">
@@ -83,7 +87,7 @@
   
 
 
-<time datetime="2012-10-18T12:51:00+08:00" pubdate data-updated="true">Oct 18<span>th</span>, 2012</time>
+<time datetime="2012-10-18T15:56:00+08:00" pubdate data-updated="true">Oct 18<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -92,45 +96,42 @@
   </header>
 
 
-<div class="entry-content"><p>say we have a model like that:</p>
+<div class="entry-content"><p>Install tiny-mce</p>
 
-<pre><code>class Data(models.Model):
-    file_name = models.CharField(max_length=100)
-    upload_file = models.FileField(upload_to='data')
+<pre><code>sodu easy_install django-tinymce
 </code></pre>
 
-<p>we what create a file in back,but not save to filesystem.
-so use StringIO create string first</p>
+<h5>How to use</h5>
 
-<pre><code>from cStringIO import StringIO
+<p>add app in settings.py</p>
 
-my_str = 'qwer\nasdf\m\n'
-
-buff = StringIO(my_str)
-
-buff.seek(0,2)
+<pre><code>INSTALLED_APPS = (
+…
+'tinymce'
+…
+)
 </code></pre>
 
-<p>use InMemoryUploadFile to create the string file</p>
+<p>if you want replace textarea tag as html editor in admin page, modify your modeladmin like this</p>
 
-<pre><code>from django.core.files.uploadedfile import InMemoryUploadedFile
-from app.models import Data
-file_name = 'myfile.txt'
-file_data = InMemoryUploadedFile(buf,'file',file_name,None,buff.tell(),None)
+<pre><code>from tinymce.widgets import TinyMCE
+    formfield_overrides = {
+        models.TextField:{'widget':TinyMCE(attrs={'cols':80,'rows':20},)},
+    }
 
-d = Data(file_name = file_name)
-d.upload_file.save(file_name,file_data)
-d.save() 
+    class Media:
+        js = (
+            '/d-media/js/tiny_mce/tiny_mce.js',
+            '/d-media/js/tiny_mce/textareas.js',
+        )
+    class Meta:
+        model = Article
+    …
 </code></pre>
 
-<p>untile now we create an InMemoryUploadedFile object and save it to our model.</p>
+<p>copy the textareas.js to your static media directory.</p>
 
-<p>by the way we can use simpler way to create the file</p>
-
-<pre><code>from django.core.files.base import ContentFile
-
-file_data = ContentFile(buff.getvalue())
-</code></pre>
+<p>more adavnce settings in <a href="http://www.tinymce.com/wiki.php">here</a></p>
 </div>
 
 
@@ -153,7 +154,7 @@ file_data = ContentFile(buff.getvalue())
   
 
 
-<time datetime="2012-10-18T12:51:00+08:00" pubdate data-updated="true">Oct 18<span>th</span>, 2012</time>
+<time datetime="2012-10-18T15:56:00+08:00" pubdate data-updated="true">Oct 18<span>th</span>, 2012</time>
       
 
 
@@ -161,7 +162,7 @@ file_data = ContentFile(buff.getvalue())
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caoguangyao.github.com/blog/2012/10/18/django-create-inmemoryfile/" data-via="" data-counturl="http://caoguangyao.github.com/blog/2012/10/18/django-create-inmemoryfile/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caoguangyao.github.com/blog/2012/10/18/django-tinymce/" data-via="" data-counturl="http://caoguangyao.github.com/blog/2012/10/18/django-tinymce/" >Tweet</a>
   
   
   
@@ -170,10 +171,8 @@ file_data = ContentFile(buff.getvalue())
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/10/16/eclipse-tips/" title="Previous Post: eclipse tips">&laquo; eclipse tips</a>
+        <a class="basic-alignment left" href="/blog/2012/10/18/django-in-sae/" title="Previous Post: Django in sae">&laquo; Django in sae</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/10/18/django-in-sae/" title="Next Post: Django in sae">Django in sae &raquo;</a>
       
     </p>
   </footer>
@@ -240,8 +239,8 @@ file_data = ContentFile(buff.getvalue())
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://caoguangyao.github.com/blog/2012/10/18/django-create-inmemoryfile/';
-        var disqus_url = 'http://caoguangyao.github.com/blog/2012/10/18/django-create-inmemoryfile/';
+        var disqus_identifier = 'http://caoguangyao.github.com/blog/2012/10/18/django-tinymce/';
+        var disqus_url = 'http://caoguangyao.github.com/blog/2012/10/18/django-tinymce/';
         var disqus_script = 'embed.js';
       
     (function () {

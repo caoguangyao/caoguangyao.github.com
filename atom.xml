@@ -4,7 +4,7 @@
   <title><![CDATA[Yes,It's mE.]]></title>
   <link href="http://caoguangyao.github.com/atom.xml" rel="self"/>
   <link href="http://caoguangyao.github.com/"/>
-  <updated>2012-10-18T14:24:01+08:00</updated>
+  <updated>2012-10-18T16:09:38+08:00</updated>
   <id>http://caoguangyao.github.com/</id>
   <author>
     <name><![CDATA[Cao.Guangyao]]></name>
@@ -12,6 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[django_tinymce]]></title>
+    <link href="http://caoguangyao.github.com/blog/2012/10/18/django-tinymce/"/>
+    <updated>2012-10-18T15:56:00+08:00</updated>
+    <id>http://caoguangyao.github.com/blog/2012/10/18/django-tinymce</id>
+    <content type="html"><![CDATA[<p>Install tiny-mce</p>
+
+<pre><code>sodu easy_install django-tinymce
+</code></pre>
+
+<h5>How to use</h5>
+
+<p>add app in settings.py</p>
+
+<pre><code>INSTALLED_APPS = (
+…
+'tinymce'
+…
+)
+</code></pre>
+
+<p>if you want replace textarea tag as html editor in admin page, modify your modeladmin like this</p>
+
+<pre><code>from tinymce.widgets import TinyMCE
+    formfield_overrides = {
+        models.TextField:{'widget':TinyMCE(attrs={'cols':80,'rows':20},)},
+    }
+
+    class Media:
+        js = (
+            '/d-media/js/tiny_mce/tiny_mce.js',
+            '/d-media/js/tiny_mce/textareas.js',
+        )
+    class Meta:
+        model = Article
+    …
+</code></pre>
+
+<p>copy the textareas.js to your static media directory.</p>
+
+<p>more adavnce settings in <a href="http://www.tinymce.com/wiki.php">here</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Django in sae]]></title>
