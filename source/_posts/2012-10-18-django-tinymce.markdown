@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "django_tinymce"
+title: "django tinymce"
 date: 2012-10-18 15:56
 comments: true
 categories: 
