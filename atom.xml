@@ -4,7 +4,7 @@
   <title><![CDATA[Yes,It's mE.]]></title>
   <link href="http://caoguangyao.github.com/atom.xml" rel="self"/>
   <link href="http://caoguangyao.github.com/"/>
-  <updated>2012-10-18T14:17:06+08:00</updated>
+  <updated>2012-10-18T14:24:01+08:00</updated>
   <id>http://caoguangyao.github.com/</id>
   <author>
     <name><![CDATA[Cao.Guangyao]]></name>
@@ -192,7 +192,7 @@ file_data = ContentFile(buff.getvalue())
     <link href="http://caoguangyao.github.com/blog/2012/10/16/eclipse-tips/"/>
     <updated>2012-10-16T09:28:00+08:00</updated>
     <id>http://caoguangyao.github.com/blog/2012/10/16/eclipse-tips</id>
-    <content type="html"><![CDATA[<p>1.fix uncode garbled</p>
+    <content type="html"><![CDATA[<p>1.fix unicode garbled</p>
 
 <p>right click project->properties->Resource->Text file encoding->other->UTF-8</p>
 
