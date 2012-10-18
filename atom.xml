@@ -4,7 +4,7 @@
   <title><![CDATA[Yes,It's mE.]]></title>
   <link href="http://caoguangyao.github.com/atom.xml" rel="self"/>
   <link href="http://caoguangyao.github.com/"/>
-  <updated>2012-10-18T14:03:10+08:00</updated>
+  <updated>2012-10-18T14:17:06+08:00</updated>
   <id>http://caoguangyao.github.com/</id>
   <author>
     <name><![CDATA[Cao.Guangyao]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[django_in_sae]]></title>
+    <title type="html"><![CDATA[Django in sae]]></title>
     <link href="http://caoguangyao.github.com/blog/2012/10/18/django-in-sae/"/>
     <updated>2012-10-18T13:30:00+08:00</updated>
     <id>http://caoguangyao.github.com/blog/2012/10/18/django-in-sae</id>
@@ -141,7 +141,7 @@ application = sae.create_wsgi_app(django.core.handlers.wsgi.WSGIHandler())
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[django_create_inmemoryfile]]></title>
+    <title type="html"><![CDATA[Django create inmemoryfile]]></title>
     <link href="http://caoguangyao.github.com/blog/2012/10/18/django-create-inmemoryfile/"/>
     <updated>2012-10-18T12:51:00+08:00</updated>
     <id>http://caoguangyao.github.com/blog/2012/10/18/django-create-inmemoryfile</id>
