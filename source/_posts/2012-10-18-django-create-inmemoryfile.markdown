@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "django_create_inmemoryfile"
+title: "Django create inmemoryfile"
 date: 2012-10-18 12:51
 comments: true
 categories: 

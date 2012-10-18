@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "django_in_sae"
+title: "Django in sae"
 date: 2012-10-18 13:30
 comments: true
 categories: 
