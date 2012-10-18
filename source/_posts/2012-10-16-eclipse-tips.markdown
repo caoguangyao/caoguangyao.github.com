@@ -6,7 +6,7 @@ comments: true
 categories: 
 ---
 
-1.fix uncode garbled
+1.fix unicode garbled
 
 right click project->properties->Resource->Text file encoding->other->UTF-8
 
