@@ -9,11 +9,7 @@
   <meta name="author" content="Cao.Guangyao">
 
   
-  <meta name="description" content="Install tiny-mce sodu easy_install django-tinymce How to use add app in settings.py INSTALLED_APPS = (
-…
-'tinymce'
-…
-) if you want replace textarea &hellip;">
+  <meta name="description" content="1.create ras key by using ssh-keygen ssh-keygen -t rsa this operation will generate two keys in your system. 2.copy it to your ssh server cat ~/.ssh/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,6 +64,56 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/19/how-to-remote-ssh-server-without-password/">How to Remote Ssh Server Without Password</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-19T08:31:00+08:00" pubdate data-updated="true">Oct 19<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/10/19/how-to-remote-ssh-server-without-password/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>1.create ras key by using ssh-keygen</p>
+
+<pre><code>ssh-keygen -t rsa
+</code></pre>
+
+<p>this operation will generate two keys in your system.</p>
+
+<p>2.copy it to your ssh server</p>
+
+<pre><code>cat ~/.ssh/id_rsa.pub |ssh username@ssh_server_host 'cat &gt;&gt; ~/.ssh/authorized_keys'
+</code></pre>
+
+<p>3.now you can remote to your server without password.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -841,6 +887,10 @@ $ rake install
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/10/19/how-to-remote-ssh-server-without-password/">how to remote ssh server without password</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/10/18/django-tinymce/">django tinymce</a>
       </li>
     
@@ -854,10 +904,6 @@ $ rake install
     
       <li class="post">
         <a href="/blog/2012/10/16/eclipse-tips/">eclipse tips</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/08/18/django-use-filefield-in-sae/">django use filefield in SAE</a>
       </li>
     
   </ul>

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>eclipse tips - Yes,It's mE.</title>
+  <title>how to remote ssh server without password - Yes,It's mE.</title>
   <meta name="author" content="Cao.Guangyao">
 
   
-  <meta name="description" content="1.fix unicode garbled right click project->properties->Resource->Text file encoding->other->UTF-8 2.auto complete Windows->Preferences->Java->Editor &hellip;">
+  <meta name="description" content="1.create ras key by using ssh-keygen ssh-keygen -t rsa this operation will generate two keys in your system. 2.copy it to your ssh server cat ~/.ssh/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://caoguangyao.github.com/blog/2012/10/16/eclipse-tips/">
+  <link rel="canonical" href="http://caoguangyao.github.com/blog/2012/10/19/how-to-remote-ssh-server-without-password/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -67,7 +67,7 @@
   
   <header>
     
-      <h1 class="entry-title">Eclipse Tips</h1>
+      <h1 class="entry-title">How to Remote Ssh Server Without Password</h1>
     
     
       <p class="meta">
@@ -83,7 +83,7 @@
   
 
 
-<time datetime="2012-10-16T09:28:00+08:00" pubdate data-updated="true">Oct 16<span>th</span>, 2012</time>
+<time datetime="2012-10-19T08:31:00+08:00" pubdate data-updated="true">Oct 19<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -92,13 +92,19 @@
   </header>
 
 
-<div class="entry-content"><p>1.fix unicode garbled</p>
+<div class="entry-content"><p>1.create ras key by using ssh-keygen</p>
 
-<p>right click project->properties->Resource->Text file encoding->other->UTF-8</p>
+<pre><code>ssh-keygen -t rsa
+</code></pre>
 
-<p>2.auto complete</p>
+<p>this operation will generate two keys in your system.</p>
 
-<p>Windows->Preferences->Java->Editor->Content Asist->replace auto activation triggers for Java &#8220;.&#8221; to &#8220;.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#8221;</p>
+<p>2.copy it to your ssh server</p>
+
+<pre><code>cat ~/.ssh/id_rsa.pub |ssh username@ssh_server_host 'cat &gt;&gt; ~/.ssh/authorized_keys'
+</code></pre>
+
+<p>3.now you can remote to your server without password.</p>
 </div>
 
 
@@ -121,7 +127,7 @@
   
 
 
-<time datetime="2012-10-16T09:28:00+08:00" pubdate data-updated="true">Oct 16<span>th</span>, 2012</time>
+<time datetime="2012-10-19T08:31:00+08:00" pubdate data-updated="true">Oct 19<span>th</span>, 2012</time>
       
 
 
@@ -129,7 +135,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caoguangyao.github.com/blog/2012/10/16/eclipse-tips/" data-via="" data-counturl="http://caoguangyao.github.com/blog/2012/10/16/eclipse-tips/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caoguangyao.github.com/blog/2012/10/19/how-to-remote-ssh-server-without-password/" data-via="" data-counturl="http://caoguangyao.github.com/blog/2012/10/19/how-to-remote-ssh-server-without-password/" >Tweet</a>
   
   
   
@@ -138,10 +144,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/08/18/django-use-filefield-in-sae/" title="Previous Post: django use filefield in SAE">&laquo; django use filefield in SAE</a>
+        <a class="basic-alignment left" href="/blog/2012/10/18/django-tinymce/" title="Previous Post: django tinymce">&laquo; django tinymce</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/10/18/django-create-inmemoryfile/" title="Next Post: Django create inmemoryfile">Django create inmemoryfile &raquo;</a>
       
     </p>
   </footer>
@@ -208,8 +212,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://caoguangyao.github.com/blog/2012/10/16/eclipse-tips/';
-        var disqus_url = 'http://caoguangyao.github.com/blog/2012/10/16/eclipse-tips/';
+        var disqus_identifier = 'http://caoguangyao.github.com/blog/2012/10/19/how-to-remote-ssh-server-without-password/';
+        var disqus_url = 'http://caoguangyao.github.com/blog/2012/10/19/how-to-remote-ssh-server-without-password/';
         var disqus_script = 'embed.js';
       
     (function () {
