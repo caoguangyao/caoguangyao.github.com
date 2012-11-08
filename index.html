@@ -9,7 +9,12 @@
   <meta name="author" content="Cao.Guangyao">
 
   
-  <meta name="description" content="1.create ras key by using ssh-keygen ssh-keygen -t rsa this operation will generate two keys in your system. 2.copy it to your ssh server cat ~/.ssh/ &hellip;">
+  <meta name="description" content="ctags download from here .
+intall it: $ tar -xzvf ctags-5.6.tar.gz
+$ cd ctags-5.6
+$ make
+$ sudo make install use it:
+go to directory $ ctags -R ctrl &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +69,97 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/11/08/vim-tips/">Vim Tips</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-08T10:26:00+08:00" pubdate data-updated="true">Nov 8<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/11/08/vim-tips/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>ctags</h3>
+
+<p>download from <a href="http://ctags.sourceforge.net">here</a> .
+intall it:</p>
+
+<pre><code>$ tar -xzvf ctags-5.6.tar.gz
+$ cd ctags-5.6
+$ make
+$ sudo make install   
+</code></pre>
+
+<p>use it:
+go to directory</p>
+
+<pre><code>$ ctags -R
+</code></pre>
+
+<p>ctrl+] go to function definition.
+ctrl+t go back.</p>
+
+<h3>taglist</h3>
+
+<p>download from <a href="http://www.vim.org/scripts/script.php?script_id=273">here</a>.</p>
+
+<p>add these in .vimrc</p>
+
+<pre><code>let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+</code></pre>
+
+<p>use command with :Tlist in vim.</p>
+
+<h3>winmanager</h3>
+
+<p>download from <a href="http://www.vim.org/scripts/script.php?script_id=95">here</a>.</p>
+
+<p>add these in .vimrc</p>
+
+<pre><code>let g:winManagerWindowLayout='FileExplorer|TagList'
+nmap wm :WMToggle&lt;cr&gt;
+</code></pre>
+
+<p>restart vim and type &#8216;wm&#8217; in normal state</p>
+
+<h3>grep</h3>
+
+<p>download form <a href="http://www.vim.org/scripts/script.php?script_id=311">here</a>.</p>
+
+<p>add in .vimrc</p>
+
+<pre><code>nnoremap &lt;silent&gt; &lt;F3&gt; :Grep&lt;CR&gt;
+</code></pre>
+
+<p>then you can use F3 to search your word.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -887,6 +983,10 @@ $ rake install
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/11/08/vim-tips/">vim tips</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/10/19/how-to-remote-ssh-server-without-password/">how to remote ssh server without password</a>
       </li>
     
@@ -900,10 +1000,6 @@ $ rake install
     
       <li class="post">
         <a href="/blog/2012/10/18/django-create-inmemoryfile/">Django create inmemoryfile</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/16/eclipse-tips/">eclipse tips</a>
       </li>
     
   </ul>
