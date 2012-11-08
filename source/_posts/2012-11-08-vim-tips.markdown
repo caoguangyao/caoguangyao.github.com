@@ -1,0 +1,56 @@
+---
+layout: post
+title: "vim tips"
+date: 2012-11-08 10:26
+comments: true
+categories: 
+---
+###ctags###
+
+download from [here](http://ctags.sourceforge.net) .
+intall it:
+	
+	$ tar -xzvf ctags-5.6.tar.gz
+	$ cd ctags-5.6
+	$ make
+	$ sudo make install   
+	
+use it:
+go to directory
+
+	$ ctags -R
+
+ctrl+] go to function definition.
+ctrl+t go back.
+
+###taglist###
+
+download from [here](http://www.vim.org/scripts/script.php?script_id=273).
+
+add these in .vimrc
+
+	let Tlist_Show_One_File=1
+	let Tlist_Exit_OnlyWindow=1
+
+use command with :Tlist in vim.
+
+###winmanager###
+
+download from [here](http://www.vim.org/scripts/script.php?script_id=95).
+
+add these in .vimrc
+
+	let g:winManagerWindowLayout='FileExplorer|TagList'
+	nmap wm :WMToggle<cr>
+	
+restart vim and type 'wm' in normal state
+
+###grep###
+download form [here](http://www.vim.org/scripts/script.php?script_id=311).
+
+add in .vimrc
+
+	nnoremap <silent> <F3> :Grep<CR>
+
+then you can use F3 to search your word.
+
