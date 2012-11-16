@@ -9,12 +9,12 @@
   <meta name="author" content="Cao.Guangyao">
 
   
-  <meta name="description" content="ctags download from here .
-intall it: $ tar -xzvf ctags-5.6.tar.gz
-$ cd ctags-5.6
-$ make
-$ sudo make install use it:
-go to directory $ ctags -R ctrl &hellip;">
+  <meta name="description" content="platform: Client:
+ubuntu10.10
+django1.2.7
+django-pyodbc from trunk Database Server
+ms sql server 2005
+winxp 32bit install tools: sudo apt-get install &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,151 @@ go to directory $ ctags -R ctrl &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/11/16/django-connect-to-mssql/">Django Connect to Mssql</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-16T12:53:00+08:00" pubdate data-updated="true">Nov 16<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/11/16/django-connect-to-mssql/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>platform:</p>
+
+<pre><code>Client:
+ubuntu10.10
+django1.2.7
+django-pyodbc from trunk
+
+Database Server
+ms sql server 2005
+winxp 32bit
+</code></pre>
+
+<p>install tools:</p>
+
+<pre><code>sudo apt-get install unixodbc unixodbc-dev freetds-dev tdsodbc
+</code></pre>
+
+<p>then modify the config files</p>
+
+<pre><code>sudo vim /etc/odbcinst.ini
+
+[FreeTDS]
+Description=TDS driver
+Driver=/usr/lib/odbc/libtdsodbc.so
+Setup=/usr/lib/odbc/libtdsS.so
+CPTimeout=
+CPReuse=
+</code></pre>
+
+<p>odbc.ini:</p>
+
+<pre><code>sudo vim /etc/odbc.ini  
+
+[mydsn]
+Description= my dns
+Driver=FreeTDS
+Database=mydb
+Servername=myServer
+TDS_Version=8.0
+Port=1433
+</code></pre>
+
+<p>freetds.conf:
+append to the last.</p>
+
+<pre><code>sudo vim /etc/freetds/freetds.conf
+
+[myServer]
+host = 192.168.3.128
+port = 1433
+tds version = 8.0
+</code></pre>
+
+<p>config finished</p>
+
+<p>use tsql command to test connect:</p>
+
+<pre><code>tsql -S server_ip_address -U username -P password
+</code></pre>
+
+<p>install pyodbc</p>
+
+<pre><code>sudo easy_install pyodbc
+</code></pre>
+
+<p>if have error for gcc:</p>
+
+<pre><code>sudo apt-get install python-dev build-essential
+</code></pre>
+
+<p>and try it angain.</p>
+
+<p>write a python script to test:</p>
+
+<pre><code>import pyodbc
+
+conn = pyodbc.connect("DSN=mydsn;UID=username;PWD=password")
+
+cur = conn.cursor()
+cur.execute('select * from test_table')
+for row in cur:
+    print 8 ,row
+</code></pre>
+
+<p>if have error in conn,use following code test first.</p>
+
+<pre><code>conn = pyodbc.connect("DRIVER={FreeTDS};Server=server_ip_address;UID=username;PWD=password;DATABASE=dbname")
+</code></pre>
+
+<p>if it don&#8217;t run nomarlly ,please check your config file:freetds.conf,odbc.ini,odbcinst.ini</p>
+
+<p>then install django-odbc from trunk</p>
+
+<pre><code>svn co http://django-pyodbc.googlecode.com/svn/trunk/
+</code></pre>
+
+<p>change the settings.py file like the document said.</p>
+
+<p>then your can run syncdb and runserver.</p>
+
+<h4>troubles</h4>
+
+<p>I did use django1.1 and django-pyodbc1.0.x at first,pyodbc is work right,but can&#8217;t run the django syncdb and runserver.
+it throws some error about settings.Time_Zone,and I still don&#8217;t know how to deal with it.</p>
+
+<p>it seens have some problem use django-pyodbc from trunk too.it happens when syncdb for admin site:throws a None type can&#8217;t itera.</p>
+
+<p>all settings are done,you can write a model to test it .</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -861,116 +1006,9 @@ alias mysqladmin='/usr/local/mysql/bin/mysqladmin'
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/12/title/">Octopress to Github on Mac</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-12T17:09:00+08:00" pubdate data-updated="true">Aug 12<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/08/12/title/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>1.install xcode</p>
-
-<p>2.install homebrew</p>
-
-<pre><code>$ ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-$ brew update
-</code></pre>
-
-<p>3.install git</p>
-
-<pre><code>$ brew install git
-</code></pre>
-
-<p>4.install RVM</p>
-
-<pre><code>$ bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
-</code></pre>
-
-<p>5.install ruby</p>
-
-<pre><code>$ rvm install 1.9.3
-</code></pre>
-
-<p>6.install Pow</p>
-
-<pre><code>curl get.pow.cx | sh
-</code></pre>
-
-<p>7.download octopress</p>
-
-<pre><code>$ git clone git://github.com/imathis/octopress.git octopress
-$ cd octopress
-</code></pre>
-
-<p>8.install some tools</p>
-
-<pre><code>$ gem install bundler
-$ rbenv rehash
-$ bundle install
-$ rake install
-</code></pre>
-
-<p>9.test localhost view</p>
-
-<pre><code>rake preview
-</code></pre>
-
-<p>10.go to github website,and new a repository with the name &#8220;yourusername.github.com&#8221;</p>
-
-<p>11.set octopress data</p>
-
-<pre><code>$ rake setup_github_pages
-</code></pre>
-
-<p>12.generate html files</p>
-
-<pre><code>$ rake generate
-</code></pre>
-
-<p>13.deploy it</p>
-
-<pre><code>$ rake deploy
-</code></pre>
-
-<p>then wait several minutes for github update the site.</p>
-
-<p>14.post an article</p>
-
-<pre><code>rake new_post['article_title']
-</code></pre>
-
-<p>in octopress/source/_post/ will make a markdown file</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -981,6 +1019,10 @@ $ rake install
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/11/16/django-connect-to-mssql/">Django connect to mssql</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/11/08/vim-tips/">vim tips</a>
@@ -996,10 +1038,6 @@ $ rake install
     
       <li class="post">
         <a href="/blog/2012/10/18/django-in-sae/">Django in sae</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/18/django-create-inmemoryfile/">Django create inmemoryfile</a>
       </li>
     
   </ul>
