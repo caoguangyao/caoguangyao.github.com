@@ -4,7 +4,7 @@
   <title><![CDATA[Yes,It's mE.]]></title>
   <link href="http://caoguangyao.github.com/atom.xml" rel="self"/>
   <link href="http://caoguangyao.github.com/"/>
-  <updated>2012-11-16T13:23:00+08:00</updated>
+  <updated>2013-04-22T10:10:50+08:00</updated>
   <id>http://caoguangyao.github.com/</id>
   <author>
     <name><![CDATA[Cao.Guangyao]]></name>
@@ -12,6 +12,399 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[foundations-templates-layouts]]></title>
+    <link href="http://caoguangyao.github.com/blog/2013/04/22/foundations-templates-layouts/"/>
+    <updated>2013-04-22T10:04:00+08:00</updated>
+    <id>http://caoguangyao.github.com/blog/2013/04/22/foundations-templates-layouts</id>
+    <content type="html"><![CDATA[<ul>
+<li>banded</li>
+</ul>
+
+
+<p><img src="https://s3.amazonaws.com/prod.zurb/561974/capture.jpeg?AWSAccessKeyId=1JFEM44HQGMDT753E9G2&amp;Expires=1373820059&amp;Signature=%2FDOhdI0VSSkee3izFwYgUzRR2ms%3D&amp;response-content-disposition=attachment%3B%20filename%3DFoundation-Banded-Template" alt="alt image" /></p>
+
+<p><a href="https://gist.github.com/ghaida/f72f24eebaa31784fd8d/raw/9e3d74f519ed4ff29f7f05a4f5f895d95bdee9b7/gistfile1.html" title="here">sample code</a>
+<a href="https://www.notableapp.com/posts/f5c3a40dc27421a7ae447873c1bc4ca129aff9a1#" title="more info">more info</a>
+<a href="http://foundation.zurb.com/page-templates4/banded.html">demo</a></p>
+
+<ul>
+<li>blog</li>
+</ul>
+
+
+<p> <img src="https://s3.amazonaws.com/prod.zurb/562137/capture.jpeg?AWSAccessKeyId=1JFEM44HQGMDT753E9G2&amp;Expires=1373819341&amp;Signature=yds%2BHVwzFXqnqnnIICcdRSRI4nw%3D&amp;response-content-disposition=attachment%3B%20filename%3DFoundation-Blog-Template" alt="alt image" />
+<a href="https://gist.github.com/ghaida/5054379/raw/f080e139a4e25c4548b265e7229cd6dbe09bff92/gistfile1.html">sample code</a>
+<a href="https://www.notableapp.com/posts/7b64bc1ee1177ae881368d74a5a2c39ef0e8871d#annotate">more info</a>
+<a href="http://foundation.zurb.com/page-templates4/blog.html">demo</a></p>
+
+<ul>
+<li>feed</li>
+</ul>
+
+
+<p> <img src="https://s3.amazonaws.com/prod.zurb/562171/capture.jpeg?AWSAccessKeyId=1JFEM44HQGMDT753E9G2&amp;Expires=1373819165&amp;Signature=Bgi40AdxRAsLRMxLvJ81tu1dxPY%3D&amp;response-content-disposition=attachment%3B%20filename%3DFoundation-Feed-Template" alt="alt image" />
+ <a href="https://gist.github.com/ghaida/5054441/raw/9bbb02b12f266e7b42f6c8f10422919ddb7d13c0/gistfile1.html">sample</a>
+ <a href="https://www.notableapp.com/posts/935033a0deaf933a2332dd94ab294ed8bd691bfd#annotate">more info</a>
+ <a href="http://foundation.zurb.com/page-templates4/feed.html">demo</a></p>
+
+<ul>
+<li>grid</li>
+</ul>
+
+
+<p> <img src="https://s3.amazonaws.com/prod.zurb/562284/capture.jpeg?AWSAccessKeyId=1JFEM44HQGMDT753E9G2&amp;Expires=1373819651&amp;Signature=GrDb16e%2FRMdNHCHnYDVAsALl33M%3D&amp;response-content-disposition=attachment%3B%20filename%3DFoundation-Grid-Template" alt="alt image" />
+ <a href="https://gist.github.com/ghaida/5054484/raw/3ad9255042ccd614312447c017ee8b61ff304d2b/gistfile1.html">sample</a>
+ <a href="https://www.notableapp.com/posts/187001b0d20e3a3219ad43e4ddd651df4b14ae6a#annotate">more info</a>
+ <a href="http://foundation.zurb.com/page-templates4/grid.html">demo</a></p>
+
+<ul>
+<li>orbit home</li>
+</ul>
+
+
+<p><img src="https://s3.amazonaws.com/prod.zurb/562298/capture.jpeg?AWSAccessKeyId=1JFEM44HQGMDT753E9G2&amp;Expires=1373820168&amp;Signature=uueLd3jhKSXYBrb58UYe7Iu0of4%3D&amp;response-content-disposition=attachment%3B%20filename%3DFoundation-Orbit-Template" alt="alt image" />
+<a href="https://gist.github.com/ghaida/5054559/raw/5b9cead6482c998fcfce533075f9ef01343a150a/gistfile1.html">sample</a>
+<a href="https://www.notableapp.com/posts/c14f15af6748c351254814e5356108e6e7ceb4eb#annotate">more info</a>
+<a href="http://foundation.zurb.com/page-templates4/orbithome.html">demo</a></p>
+
+<ul>
+<li>banner home</li>
+</ul>
+
+
+<p><img src="https://s3.amazonaws.com/prod.zurb/562299/capture.jpeg?AWSAccessKeyId=1JFEM44HQGMDT753E9G2&amp;Expires=1373819585&amp;Signature=GYKtLbI%2Bd8L3%2FSVxOm2V1lWTyF4%3D&amp;response-content-disposition=attachment%3B%20filename%3DFoundation-Banner-Template" alt="alt image" />
+<a href="https://gist.github.com/ghaida/5054598/raw/5eb480a9ba24869cabe0760a0745dfab33520233/gistfile1.html">sample</a>
+<a href="https://www.notableapp.com/posts/6e5673e7cf7a7228c91dd0e2668f695f0218cd41#annotate">more info</a>
+<a href="http://foundation.zurb.com/page-templates4/bannerhome.html">demo</a></p>
+
+<ul>
+<li>slidebar</li>
+</ul>
+
+
+<p><img src="https://s3.amazonaws.com/prod.zurb/562300/capture.jpeg?AWSAccessKeyId=1JFEM44HQGMDT753E9G2&amp;Expires=1373819882&amp;Signature=1GAhPwBGOWcX1btPNHhXcIsaKw4%3D&amp;response-content-disposition=attachment%3B%20filename%3DFoundation-Sidebar-Template" alt="alt image" />
+<a href="https://gist.github.com/ghaida/5054620/raw/4a233752e1a51d010cf8cfe8ec3d49af17d2d858/gistfile1.html">sample</a>
+<a href="https://www.notableapp.com/posts/a9f4dfdb9f0a7cb38a954d22acbb8ce550d89381#">more info</a>
+<a href="http://foundation.zurb.com/page-templates4/sidebar.html">demo</a></p>
+
+<ul>
+<li>contact</li>
+</ul>
+
+
+<p><img src="https://s3.amazonaws.com/prod.zurb/562303/capture.jpeg?AWSAccessKeyId=1JFEM44HQGMDT753E9G2&amp;Expires=1373819618&amp;Signature=KFdjbW84Lis%2BB77doLq7%2FVlj4dg%3D&amp;response-content-disposition=attachment%3B%20filename%3DFoundation-Contact" alt="alt image" />
+<a href="https://gist.github.com/ghaida/5054646/raw/cd669ee59ce65510c52a5acc39c1f5dbb7b9c925/gistfile1.html">sample</a>
+<a href="https://www.notableapp.com/posts/d703855426b0090fdd31baac7cae895c25586800#annotate">more info</a>
+<a href="http://foundation.zurb.com/page-templates4/contact.html">demo</a></p>
+
+<ul>
+<li>marketing</li>
+</ul>
+
+
+<p><img src="https://s3.amazonaws.com/prod.zurb/562305/capture.jpeg?AWSAccessKeyId=1JFEM44HQGMDT753E9G2&amp;Expires=1373819770&amp;Signature=pcL%2FoCzFNY6cO4EKO%2Fneg0qS7Sc%3D&amp;response-content-disposition=attachment%3B%20filename%3DFoundation-Marketing-Template" alt="alt image" />
+<a href="https://gist.github.com/ghaida/5054687/raw/13b62f3d38a07a4f60043ba39bed40c10887b26d/gistfile1.html">sample</a>
+<a href="https://www.notableapp.com/posts/6c64072a5fee3b39b1fe7cc06ef0a0d447dd5b4c#annotate">more info</a>
+<a href="http://foundation.zurb.com/page-templates4/marketing.html">demo</a></p>
+
+<ul>
+<li>realty</li>
+</ul>
+
+
+<p><img src="https://s3.amazonaws.com/prod.zurb/562313/capture.jpeg?AWSAccessKeyId=1JFEM44HQGMDT753E9G2&amp;Expires=1373819214&amp;Signature=f4XtIKrzyPrngs48h2wLuH9k2rA%3D&amp;response-content-disposition=attachment%3B%20filename%3DFoundation-Realty-Template" alt="alt image" />
+<a href="https://gist.github.com/ghaida/5054706/raw/87be8e6da19c1f44437bd389a8c05ff0c3451a05/gistfile1.html">sample</a>
+<a href="https://www.notableapp.com/posts/6e5673e7cf7a7228c91dd0e2668f695f0218cd41#annotate">more info</a>
+<a href="http://foundation.zurb.com/page-templates4/realty.html">demo</a></p>
+
+<ul>
+<li>so boxy</li>
+</ul>
+
+
+<p><img src="https://s3.amazonaws.com/prod.zurb/562324/capture.jpeg?AWSAccessKeyId=1JFEM44HQGMDT753E9G2&amp;Expires=1373820166&amp;Signature=Eeg5MqlnkOE2WW0c3JVJXpKbE%2Bo%3D&amp;response-content-disposition=attachment%3B%20filename%3DFoundation-So-Boxy-Template" alt="alt image" />
+<a href="https://gist.github.com/ghaida/5054726/raw/680d79b9f7ffeecdb90de6ea1a0d554d8c678ef9/gistfile1.html">sample</a>
+<a href="https://www.notableapp.com/posts/53788be80f4bec2608900db291d35f55022208e2#annotate">more info</a>
+<a href="http://foundation.zurb.com/page-templates4/so-boxy.html">demo</a></p>
+
+<ul>
+<li>store</li>
+</ul>
+
+
+<p><img src="https://s3.amazonaws.com/prod.zurb/562346/capture.jpeg?AWSAccessKeyId=1JFEM44HQGMDT753E9G2&amp;Expires=1373819111&amp;Signature=Pb3%2FQ4j31eHBGpK6DgHKNX4fDM8%3D&amp;response-content-disposition=attachment%3B%20filename%3DFoundation-Store-Template" alt="alt image" />
+<a href="https://gist.github.com/ghaida/5054752/raw/0ff5fc07ca04167c450559e1db3a1b11de94b95c/gistfile1.html">sample</a>
+<a href="https://www.notableapp.com/posts/4e13e639fbf4ac815dd106de6caa02e949b81bb0#annotate">more info</a>
+<a href="http://foundation.zurb.com/page-templates4/store.html">demo</a></p>
+
+<ul>
+<li>workspace</li>
+</ul>
+
+
+<p><img src="https://s3.amazonaws.com/prod.zurb/562348/capture.jpeg?AWSAccessKeyId=1JFEM44HQGMDT753E9G2&amp;Expires=1373819149&amp;Signature=ot6SXVO3AWDGY51aSq2kucGCNfA%3D&amp;response-content-disposition=attachment%3B%20filename%3DFoundation-Workspace-Template" alt="alt image" />
+<a href="https://gist.github.com/ghaida/5054765/raw/6e643cfdca63f2452605c07460c94488b2ccfe03/gistfile1.html">sample</a>
+<a href="https://www.notableapp.com/posts/b67072af6a4da56b986d6de99319e5659bd7f68b#annotate">more info</a>
+<a href="http://foundation.zurb.com/page-templates4/workspace.html">demo</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[donki-useful-codes]]></title>
+    <link href="http://caoguangyao.github.com/blog/2013/04/22/donki-useful-codes/"/>
+    <updated>2013-04-22T09:56:00+08:00</updated>
+    <id>http://caoguangyao.github.com/blog/2013/04/22/donki-useful-codes</id>
+    <content type="html"><![CDATA[<h2>1. js &amp; jquery</h2>
+
+<ul>
+<li><p>reverse:</p>
+
+<p>  jQuery.fn.reverse = [].reverse;</p></li>
+<li><p>object exists:</p>
+
+<pre><code>  jQuery.fn.exists = function(){
+      return this.length&gt;0;
+  }
+</code></pre></li>
+<li><p>string format:</p>
+
+<pre><code>  if (!String.prototype.format) {
+      String.prototype.format = function() {
+          var args = arguments;
+          return this.replace(/{(\d+)}/g, function(match, number) { 
+              return typeof args[number] != 'undefined'? args[number]: match;
+          });
+      };
+  }
+</code></pre></li>
+</ul>
+
+
+<p>plugins > <em>fileDownlad.js</em></p>
+
+<p><a href="https://github.com/johnculviner/jquery.fileDownload">download</a></p>
+
+<h2>2. django</h2>
+
+<ul>
+<li><p>settings.py</p>
+
+<ul>
+<li><p>current directory</p>
+
+<pre><code>  import os
+  APP_ROOT = os.path.dirname(__file__)
+</code></pre></li>
+</ul>
+</li>
+<li><p>models</p>
+
+<ul>
+<li><p>dynamic file upload path</p>
+
+<pre><code>  class THistory(models.Model):
+      shop = models.ForeignKey('MShop')
+      section = models.ForeignKey('MSection')
+      revision = models.IntegerField()
+
+      def get_upload_to(self,filename):
+          ext = filename.split('.')[-1]
+          filename = u'%s.%s' % (get_datetime_string(),ext)
+          return os.path.join(self.default_upload_to,filename)
+
+      filepath = models.FileField(upload_to=get_upload_to)
+      user = models.ForeignKey('MUser',null=True,on_delete=models.SET_NULL)
+      upload_date = models.DateTimeField(auto_now=True,auto_now_add=True)
+
+      default_upload_to = 'excelfile'
+</code></pre></li>
+</ul>
+</li>
+<li><p>custom django user (method 1):</p>
+
+<pre><code>  class MUser(User):
+      objects = UserManager()
+      display_name = models.CharField(max_length = 24, default='')
+      permission_choices = (
+              ('1','admin'),
+              ('2','normal'),
+              )
+      permission= models.CharField(max_length= 5,choices=permission_choices)
+      shop = models.ForeignKey('MShop',blank=True,null=True)
+
+      def __unicode__(self):
+          return self.usernam
+</code></pre></li>
+</ul>
+
+
+<h2>3. views</h2>
+
+<ul>
+<li><p>make download response</p>
+
+<pre><code>  def generate_download_response(file_path,file_name):
+      response = HttpResponse(readFile(file_path))
+      response['Content-Length'] = os.path.getsize(file_path)
+      response['Content-type'] = 'application/vnd.ms-excel'
+      response['Content-Disposition'] = 'attachment; filename="%s"' % file_name.encode('cp932')
+      response.set_cookie('fileDownload','true',path='/')
+
+      return respons
+
+  def readFile(fn, buf_size=262144):
+      f = open(fn, "rb")
+      while True:
+          c = f.read(buf_size)
+          if c:
+              yield c
+          else:
+              break
+      f.close()
+</code></pre></li>
+<li><p>custom 404,500 view</p>
+
+<ul>
+<li><p>A).config in settings.py ->debug = False</p></li>
+<li><p>B).config in urls.py ->
+handler404  = &#8216;webapp.views.handle_404_view&#8217;
+handler500 = &#8216;webapp.views.handler_500_view</p></li>
+<li><p>C).config in views.py -></p>
+
+<pre><code>  def handle_500_view(request):
+      t = loader.get_template('500.html')
+      type,value,tb = sys.exc_info()
+      return HttpResponseServerError(t.render(RequestContext(request,{'excption_value':value}))) 
+
+  def handle_404_view(request):
+
+      return render(request,'404.html',status=404
+</code></pre></li>
+</ul>
+</li>
+<li><p>formset</p>
+
+<p>  <a href="https://docs.djangoproject.com/en/1.4/topics/forms/formsets/">see detail in django documents</a></p></li>
+<li><p>transactions</p>
+
+<p>  <a href="https://docs.djangoproject.com/en/1.4/topics/db/transactions/">see detail in django documents</a></p></li>
+<li><p>commands</p>
+
+<ul>
+<li><p>start project</p>
+
+<pre><code>  django-admin startproject projectname
+</code></pre></li>
+<li><p>start application</p>
+
+<pre><code>  django-admin startapp appname
+</code></pre></li>
+<li><p>syncdb</p>
+
+<pre><code>  python manage.py syncdb
+</code></pre></li>
+<li><p>inspectdb</p>
+
+<pre><code>  python manage.py inspectdb &gt; filename.py
+</code></pre></li>
+<li><p>run standalone</p>
+
+<pre><code>  python manage.py runserver 0.0.0.0:portnumber
+</code></pre></li>
+<li><p>run shell</p>
+
+<pre><code>  python manage.py shell
+</code></pre></li>
+<li><p>multipy database</p>
+
+<pre><code>  python manage.py syncdb --database=databasename
+</code></pre></li>
+</ul>
+</li>
+<li><p>static file serve</p>
+
+<ul>
+<li><p>config in settings.py</p>
+
+<pre><code>  MEDIA_ROOT = os.path.join(APP_ROOT,'..\\donki-static') 
+  MEDIA_URL = '/excel/
+</code></pre></li>
+<li><p>config in urls.py</p>
+
+<pre><code>  url(r'^excel/(?P&lt;path&gt;.*)$', django.views.static.serve', {'document_root':MEDIA_ROOT})
+</code></pre></li>
+</ul>
+</li>
+<li><p>apache host</p>
+
+<ul>
+<li><p>wsgi</p>
+
+<p>  <a href="https://code.google.com/p/modwsgi/">sell detail dowcuments</a></p></li>
+<li><p>sample virtualhost:</p>
+
+<pre><code>  &lt;VirtualHost *:80&gt;
+  ServerName donki.localhost
+
+  WSGIScriptAlias / c:\sourcecode\donki\donki\wsgi.py
+
+  &lt;Directory c:\sourcecode\donki\donki&gt;
+  &lt;Files wsgi.py&gt;
+  Order deny,allow
+  Allow from all
+  &lt;/Files&gt;
+  &lt;/Directory&gt;
+
+  Alias /static/ "c:/sourcecode/donki/webapp/static/"
+
+  &lt;Directory "c:/sourcecode/donki/webapp/static/"&gt;
+  Order deny,allow
+  Allow from all
+  &lt;/Directory&gt;
+  ErrorLog "c:\sourcecode\donki\logs\error.log"
+
+  CustomLog "c:\sourcecode\donki\logs\access.log" common
+  &lt;/VirtualHost&gt;
+</code></pre></li>
+<li><p>command:</p>
+
+<pre><code>  httpd -t check #script syntax
+  httpd -k restart #restart appache with information            
+</code></pre></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>3. python</h2>
+
+<pre><code>* libs
+    * MySQL-python
+    * cx_Oracle
+    * pywin32
+
+* 3.x &amp;2.x
+</code></pre>
+
+<h2>4. office vba</h2>
+
+<ul>
+<li><p>convert column to number</p>
+
+<pre><code>  def conver_column_to_number(col_name):
+      return reduce(lambda s,a:s*26+ord(a)-ord('A')+1,col_name,0)
+</code></pre></li>
+<li><p>quick deal with cells</p>
+
+<pre><code> range = sheet.Range('start : end')
+ details see in win32.py
+</code></pre></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Django connect to mssql]]></title>

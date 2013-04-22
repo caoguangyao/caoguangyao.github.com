@@ -1,0 +1,484 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>donki-useful-codes - Yes,It's mE.</title>
+  <meta name="author" content="Cao.Guangyao">
+
+  
+  <meta name="description" content="1. js &amp; jquery reverse: jQuery.fn.reverse = [].reverse;
+object exists: jQuery.fn.exists = function(){ return this.length&gt;0; } string format: &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://caoguangyao.github.com/blog/2013/04/22/donki-useful-codes/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Yes,It's mE." type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Yes,It's mE.</a></h1>
+  
+    <h2>Hi,I am here.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:caoguangyao.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Donki-useful-codes</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-22T09:56:00+08:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>1. js &amp; jquery</h2>
+
+<ul>
+<li><p>reverse:</p>
+
+<p>  jQuery.fn.reverse = [].reverse;</p></li>
+<li><p>object exists:</p>
+
+<pre><code>  jQuery.fn.exists = function(){
+      return this.length&gt;0;
+  }
+</code></pre></li>
+<li><p>string format:</p>
+
+<pre><code>  if (!String.prototype.format) {
+      String.prototype.format = function() {
+          var args = arguments;
+          return this.replace(/{(\d+)}/g, function(match, number) { 
+              return typeof args[number] != 'undefined'? args[number]: match;
+          });
+      };
+  }
+</code></pre></li>
+</ul>
+
+
+<p>plugins > <em>fileDownlad.js</em></p>
+
+<p><a href="https://github.com/johnculviner/jquery.fileDownload">download</a></p>
+
+<h2>2. django</h2>
+
+<ul>
+<li><p>settings.py</p>
+
+<ul>
+<li><p>current directory</p>
+
+<pre><code>  import os
+  APP_ROOT = os.path.dirname(__file__)
+</code></pre></li>
+</ul>
+</li>
+<li><p>models</p>
+
+<ul>
+<li><p>dynamic file upload path</p>
+
+<pre><code>  class THistory(models.Model):
+      shop = models.ForeignKey('MShop')
+      section = models.ForeignKey('MSection')
+      revision = models.IntegerField()
+
+      def get_upload_to(self,filename):
+          ext = filename.split('.')[-1]
+          filename = u'%s.%s' % (get_datetime_string(),ext)
+          return os.path.join(self.default_upload_to,filename)
+
+      filepath = models.FileField(upload_to=get_upload_to)
+      user = models.ForeignKey('MUser',null=True,on_delete=models.SET_NULL)
+      upload_date = models.DateTimeField(auto_now=True,auto_now_add=True)
+
+      default_upload_to = 'excelfile'
+</code></pre></li>
+</ul>
+</li>
+<li><p>custom django user (method 1):</p>
+
+<pre><code>  class MUser(User):
+      objects = UserManager()
+      display_name = models.CharField(max_length = 24, default='')
+      permission_choices = (
+              ('1','admin'),
+              ('2','normal'),
+              )
+      permission= models.CharField(max_length= 5,choices=permission_choices)
+      shop = models.ForeignKey('MShop',blank=True,null=True)
+
+      def __unicode__(self):
+          return self.usernam
+</code></pre></li>
+</ul>
+
+
+<h2>3. views</h2>
+
+<ul>
+<li><p>make download response</p>
+
+<pre><code>  def generate_download_response(file_path,file_name):
+      response = HttpResponse(readFile(file_path))
+      response['Content-Length'] = os.path.getsize(file_path)
+      response['Content-type'] = 'application/vnd.ms-excel'
+      response['Content-Disposition'] = 'attachment; filename="%s"' % file_name.encode('cp932')
+      response.set_cookie('fileDownload','true',path='/')
+
+      return respons
+
+  def readFile(fn, buf_size=262144):
+      f = open(fn, "rb")
+      while True:
+          c = f.read(buf_size)
+          if c:
+              yield c
+          else:
+              break
+      f.close()
+</code></pre></li>
+<li><p>custom 404,500 view</p>
+
+<ul>
+<li><p>A).config in settings.py ->debug = False</p></li>
+<li><p>B).config in urls.py ->
+handler404  = &#8216;webapp.views.handle_404_view&#8217;
+handler500 = &#8216;webapp.views.handler_500_view</p></li>
+<li><p>C).config in views.py -></p>
+
+<pre><code>  def handle_500_view(request):
+      t = loader.get_template('500.html')
+      type,value,tb = sys.exc_info()
+      return HttpResponseServerError(t.render(RequestContext(request,{'excption_value':value}))) 
+
+  def handle_404_view(request):
+
+      return render(request,'404.html',status=404
+</code></pre></li>
+</ul>
+</li>
+<li><p>formset</p>
+
+<p>  <a href="https://docs.djangoproject.com/en/1.4/topics/forms/formsets/">see detail in django documents</a></p></li>
+<li><p>transactions</p>
+
+<p>  <a href="https://docs.djangoproject.com/en/1.4/topics/db/transactions/">see detail in django documents</a></p></li>
+<li><p>commands</p>
+
+<ul>
+<li><p>start project</p>
+
+<pre><code>  django-admin startproject projectname
+</code></pre></li>
+<li><p>start application</p>
+
+<pre><code>  django-admin startapp appname
+</code></pre></li>
+<li><p>syncdb</p>
+
+<pre><code>  python manage.py syncdb
+</code></pre></li>
+<li><p>inspectdb</p>
+
+<pre><code>  python manage.py inspectdb &gt; filename.py
+</code></pre></li>
+<li><p>run standalone</p>
+
+<pre><code>  python manage.py runserver 0.0.0.0:portnumber
+</code></pre></li>
+<li><p>run shell</p>
+
+<pre><code>  python manage.py shell
+</code></pre></li>
+<li><p>multipy database</p>
+
+<pre><code>  python manage.py syncdb --database=databasename
+</code></pre></li>
+</ul>
+</li>
+<li><p>static file serve</p>
+
+<ul>
+<li><p>config in settings.py</p>
+
+<pre><code>  MEDIA_ROOT = os.path.join(APP_ROOT,'..\\donki-static') 
+  MEDIA_URL = '/excel/
+</code></pre></li>
+<li><p>config in urls.py</p>
+
+<pre><code>  url(r'^excel/(?P&lt;path&gt;.*)$', django.views.static.serve', {'document_root':MEDIA_ROOT})
+</code></pre></li>
+</ul>
+</li>
+<li><p>apache host</p>
+
+<ul>
+<li><p>wsgi</p>
+
+<p>  <a href="https://code.google.com/p/modwsgi/">sell detail dowcuments</a></p></li>
+<li><p>sample virtualhost:</p>
+
+<pre><code>  &lt;VirtualHost *:80&gt;
+  ServerName donki.localhost
+
+  WSGIScriptAlias / c:\sourcecode\donki\donki\wsgi.py
+
+  &lt;Directory c:\sourcecode\donki\donki&gt;
+  &lt;Files wsgi.py&gt;
+  Order deny,allow
+  Allow from all
+  &lt;/Files&gt;
+  &lt;/Directory&gt;
+
+  Alias /static/ "c:/sourcecode/donki/webapp/static/"
+
+  &lt;Directory "c:/sourcecode/donki/webapp/static/"&gt;
+  Order deny,allow
+  Allow from all
+  &lt;/Directory&gt;
+  ErrorLog "c:\sourcecode\donki\logs\error.log"
+
+  CustomLog "c:\sourcecode\donki\logs\access.log" common
+  &lt;/VirtualHost&gt;
+</code></pre></li>
+<li><p>command:</p>
+
+<pre><code>  httpd -t check #script syntax
+  httpd -k restart #restart appache with information            
+</code></pre></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>3. python</h2>
+
+<pre><code>* libs
+    * MySQL-python
+    * cx_Oracle
+    * pywin32
+
+* 3.x &amp;2.x
+</code></pre>
+
+<h2>4. office vba</h2>
+
+<ul>
+<li><p>convert column to number</p>
+
+<pre><code>  def conver_column_to_number(col_name):
+      return reduce(lambda s,a:s*26+ord(a)-ord('A')+1,col_name,0)
+</code></pre></li>
+<li><p>quick deal with cells</p>
+
+<pre><code> range = sheet.Range('start : end')
+ details see in win32.py
+</code></pre></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Cao.Guangyao</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-22T09:56:00+08:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caoguangyao.github.com/blog/2013/04/22/donki-useful-codes/" data-via="" data-counturl="http://caoguangyao.github.com/blog/2013/04/22/donki-useful-codes/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/11/16/django-connect-to-mssql/" title="Previous Post: Django connect to mssql">&laquo; Django connect to mssql</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/04/22/foundations-templates-layouts/" title="Next Post: foundations-templates-layouts">foundations-templates-layouts &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/22/foundations-templates-layouts/">foundations-templates-layouts</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/22/donki-useful-codes/">donki-useful-codes</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/16/django-connect-to-mssql/">Django connect to mssql</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/08/vim-tips/">vim tips</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/19/how-to-remote-ssh-server-without-password/">how to remote ssh server without password</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Cao.Guangyao -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'cgy8888sblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://caoguangyao.github.com/blog/2013/04/22/donki-useful-codes/';
+        var disqus_url = 'http://caoguangyao.github.com/blog/2013/04/22/donki-useful-codes/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
