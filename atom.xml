@@ -4,7 +4,7 @@
   <title><![CDATA[Yes,It's mE.]]></title>
   <link href="http://caoguangyao.github.com/atom.xml" rel="self"/>
   <link href="http://caoguangyao.github.com/"/>
-  <updated>2013-05-23T15:34:42+08:00</updated>
+  <updated>2013-05-27T14:24:06+08:00</updated>
   <id>http://caoguangyao.github.com/</id>
   <author>
     <name><![CDATA[Cao.Guangyao]]></name>
@@ -12,6 +12,356 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Slim3 datastore and controller]]></title>
+    <link href="http://caoguangyao.github.com/blog/2013/05/27/slim3-datastore-and-controller/"/>
+    <updated>2013-05-27T09:37:00+08:00</updated>
+    <id>http://caoguangyao.github.com/blog/2013/05/27/slim3-datastore-and-controller</id>
+    <content type="html"><![CDATA[<h3>Controller</h3>
+
+<hr />
+
+<p>interface: run()</p>
+
+<p>URL mapping:mapping rule as follows:</p>
+
+<p><strong>normal usage</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>path </th>
+<th> controller</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/</td>
+<td>packagename.controller.IndexController</td>
+</tr>
+<tr>
+<td>/xxx</td>
+<td>packagename.controller.XxxController</td>
+</tr>
+<tr>
+<td>/xxx/</td>
+<td>packagename.controller.xxx.IndexController</td>
+</tr>
+<tr>
+<td>/xxx/yyy</td>
+<td>packagename.controller.xxx.YyyController</td>
+</tr>
+<tr>
+<td>/xxx/yyy/zzz</td>
+<td>packagename.controller.xxx.yyy.ZzzController</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>note: packagename is defined in web.xml</p>
+
+<p>if you are use GWT add &#8220;server&#8221; after packagename</p>
+
+<p><strong> url rewrite </strong></p>
+
+<p>Define packagename.controller.AppRouter first.</p>
+
+<p>for example:</p>
+
+<pre><code>package slim3.demo.controller;
+
+import org.slim3.controller.router.RouterImpl;
+
+public class AppRouter extends RouterImpl {
+
+    public AppRouter() {
+        addRouting("/_ah/mail/{address}", "/mail/receive?address={address}");
+        addRouting(
+            "/{app}/edit/{key}/{version}",
+            "/{app}/edit?key={key}&amp;version={version}");
+        addRouting(
+            "/{app}/delete/{key}/{version}",
+            "/{app}/delete?key={key}&amp;version={version}");
+                addRouting(
+            "/{app}/find/*path",
+            "/{app}/find?path={path}");
+        }   
+} 
+</code></pre>
+
+<p>The request for /_ah/mail/xxx@gmail.com is routed to /mail/receive?address=xxx@gmail.com.</p>
+
+<p>The request for /blog/edit/xxx/1 is routed to /blog/edit?key=xxx&amp;version=1.</p>
+
+<p>The request for /blog/delete/xxx/1 is routed to /blog/delete?key=xxx&amp;version=1.</p>
+
+<p>The request for /blog/find/xxx/yyy/zzz is routed to /blog/find?path=xxx%2Fyyy%2Fzzz, (xxx/yyy/zzz gets URL-encoded).</p>
+
+<p>A place holder({xxx}) does not match &#8220;/&#8221;, because &#8220;/&#8221; is a path separator.</p>
+
+<p>A catch-all place holder(*xxx) must be at the end of the match (From) string and matches everything including &#8220;/&#8221; up to the end.</p>
+
+<p><strong> file upload </strong></p>
+
+<p>The uploaded result is stored in FileItem.java. So you can get it as follows:</p>
+
+<pre><code>FileItem formFile = requestScope("formFile");
+</code></pre>
+
+<p>The size of uploaded data is limited to 10MB.
+The maximum entity size is 1MB. so:
+UploadedDataFragment:</p>
+
+<pre><code>@Model
+public class UploadedData {
+
+    @Attribute(primaryKey = true)
+    private Key key;
+
+    @Attribute(version = true)
+    private Long version = 0L;
+
+    private String fileName;
+
+    private int length;
+
+    @Attribute(persistent = false)
+    private InverseModelListRef&lt;UploadedDataFragment, UploadedData&gt; fragmentListRef =
+        new InverseModelListRef&lt;UploadedDataFragment, UploadedData&gt;(
+            UploadedDataFragment.class,
+            "uploadDataRef",
+            this,
+            new Sort("index"));
+        ...
+}
+</code></pre>
+
+<p>UploadedDataFragment</p>
+
+<pre><code>@Model
+public class UploadedDataFragment {
+
+    @Attribute(primaryKey = true)
+    private Key key;
+
+    @Attribute(lob = true)
+    private byte[] bytes;
+
+    private ModelRef&lt;UploadedData&gt; uploadDataRef =
+        new ModelRef&lt;UploadedData&gt;(
+            UploadedData.class);
+
+    private int index;
+
+    ...
+}
+</code></pre>
+
+<p>UploadService</p>
+
+<pre><code>public UploadedData upload(FileItem formFile) {
+    if (formFile == null) {
+        return null;
+    }
+    List&lt;Object&gt; models = new ArrayList&lt;Object&gt;();
+    UploadedData data = new UploadedData();
+    models.add(data);
+    data.setKey(Datastore.allocateId(d));
+    data.setFileName(formFile.getShortFileName());
+    data.setLength(formFile.getData().length);
+    byte[] bytes = formFile.getData();
+    byte[][] bytesArray = ByteUtil.split(bytes, FRAGMENT_SIZE);
+    Iterator&lt;Key&gt; keys =
+        Datastore.allocateIds(data.getKey(), f, bytesArray.length).iterator();
+    for (int i = 0; i &lt; bytesArray.length; i++) {
+        byte[] fragmentData = bytesArray[i];
+        UploadedDataFragment fragment = new UploadedDataFragment();
+        models.add(fragment);
+        fragment.setKey(keys.next());
+        fragment.setBytes(fragmentData);
+        fragment.setIndex(i);
+        fragment.getUploadDataRef().setModel(data);
+    }
+    Transaction tx = Datastore.beginTransaction();
+    for (Object model : models) {
+        Datastore.put(tx, model);
+    }
+    tx.commit();
+    return data;
+}
+</code></pre>
+
+<p><strong> validation </strong></p>
+
+<p>Slim3 provides a simple validation framework as follows:</p>
+
+<pre><code>Validators v = new Validators(request);
+v.add("arg1", v.required(), v.integerType());
+v.add("arg2", v.required(), v.integerType(), v.longRange(3, 5));
+if (v.validate()) {
+    //OK
+} else {
+    //NG
+    Errors errors = v.getErrors();
+    System.out.println(errors.get("arg1"));
+    System.out.println(errors.get("arg2"));
+}
+</code></pre>
+
+<p>The error messages are stored in <project>/src/application[_locale].properties as follows:</p>
+
+<pre><code>validator.required={0} is required.
+validator.byteType={0} must be a byte.
+validator.shortType={0} must be a short.
+validator.integerType={0} must be an integer.
+validator.longType={0} must be a long.
+validator.floatType={0} must be a float.
+validator.doubleType={0} must be a double.
+validator.numberType={0} is not a number({1}).
+validator.dateType={0} is not a date({1}).
+validator.minlength={0} can not be less than {1} characters.
+validator.maxlength={0} can not be greater than {1} characters.
+validator.range={0} is not in the {1} to {2} range.
+validator.regexp={0} is invalid.
+</code></pre>
+
+<p>{0} is an attribute name. If you want to change the attribute name by locale, define label.<attribute name> entry in <project>/src/application[_locale].properties.</p>
+
+<pre><code>label.arg1=xxx
+label.arg2=yyy
+</code></pre>
+
+<p>If the attribute is stored to a model, you can specify it type-safely using Meta data of model:</p>
+
+<pre><code>Validators v = new Validators(request);
+BlogMeta meta = BlogMeta.get();
+v.add(meta.title, v.required());
+v.add(meta.content, v.required());
+</code></pre>
+
+<h2>Models</h2>
+
+<hr />
+
+<p>To declare a Java class as model, give the class a @Model annotation. For example:</p>
+
+<pre><code>import org.slim3.datastore.Model;
+
+@Model
+public class Employee {
+    // ...
+}
+</code></pre>
+
+<p>Fields of the data class are stored in the datastore. A persistent field must have getter and setter methods.</p>
+
+<pre><code>import java.util.Date;
+
+// ...
+    private Date hireDate;
+
+    public Date getHireDate() {
+        return hireDate;
+    }
+
+    public void setHireDate(Date hireDate) {
+        this.hireDate = hireDate;
+    }
+</code></pre>
+
+<p>A data class must have one field dedicated to storing the primary key of the corresponding datastore entity. A key field must be com.google.appengine.api.datastore.Key. A key use a @Attribute(primaryKey = true) annotation:</p>
+
+<pre><code>import com.google.appengine.api.datastore.Key;
+import org.slim3.datastore.Attribute;
+
+// ...
+    @Attribute(primaryKey = true)
+    private Key key;
+
+// ... accessors ...  
+</code></pre>
+
+<p><strong>Serializable Objects</strong></p>
+
+<p>You can store an instance of a Serializable class as a Blob value. To tell Slim3 Datastore to serialize the value, the field uses the annotation @Attribute(lob = true). Blob values are not indexed and cannot be used in query filters or sort orders.</p>
+
+<p>Here is an example of a simple Serializable class that represents a file, including the file contents, a filename and a MIME type.</p>
+
+<pre><code>import java.io.Serializable;
+
+public class DownloadableFile implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private byte[] content;
+    private String filename;
+    private String mimeType;
+
+    // ... accessors ...
+}
+</code></pre>
+
+<p>To store an instance of a Serializable class as a Blob value in a property, declare a field whose type is the class, and use the @Attribute(lob = true) annotation:</p>
+
+<pre><code>import DownloadableFile;
+import org.slim3.datastore.Attribute;
+// ...
+    @Attribute(lob = true)
+    private DownloadableFile file;
+</code></pre>
+
+<p><strong>Creating a model</strong></p>
+
+<p>To store a model in the datastore, you call Datastore.put() method, passing it the instance.</p>
+
+<pre><code>Employee employee = new Employee();
+...
+Datastore.put(employee);
+</code></pre>
+
+<p><strong>Getting a model by Key</strong></p>
+
+<pre><code>Key key = ...;
+Employee emp = Datastore.get(Employee.class, key);
+</code></pre>
+
+<p><strong>Updating a model</strong></p>
+
+<p>To update a model, fetch the model, modify it, and put it to the datastore:</p>
+
+<pre><code>public void updateEmployeeTitle(Key key, String newTitle) {
+    Employee emp = Datastore.get(Employee.class, key);
+    emp.setTitle(newTitle);
+    Datastore.put(emp);
+}
+</code></pre>
+
+<p><strong>Deleting a model</strong></p>
+
+<p>To delete a model from the datastore, call Datastore.delete() method with the key:</p>
+
+<pre><code>Key key = ...;
+Datastore.delete(key);
+</code></pre>
+
+<p><strong>Query</strong></p>
+
+<p>A filter specifies a field name, an operator, and a value. The value must be provided by the app; it cannot refer to another property, or be calculated in terms of other properties. The operator can be any of the following: &#8220;equal&#8221;, &#8220;lessThan&#8221;, &#8220;lessThanOrEqual&#8221;, &#8220;greaterThan&#8221;, &#8220;greaterThanOrEqual&#8221;, &#8220;isNotNll&#8221;, &#8220;startsWith&#8221;, &#8220;notEqual&#8221;, &#8220;in&#8221;. An entity must match all filters to be a result. The logical combination of filters is &#8220;and&#8221;.</p>
+
+<p>The &#8220;notEqual&#8221; operator actually performs 2 queries: one where all other filters are the same and the &#8220;notEqual&#8221; filter is replaced with a &#8220;lessThan&#8221; filter, and one where the &#8220;notEqual&#8221; filter is replaced with a &#8220;greaterThan&#8221; filter. The results are merged, in order. As described below in the discussion of inequality filters, a query can only have one &#8220;notEqual&#8221; filter, and such a query cannot have other inequality filters.</p>
+
+<p>The &#8220;in&#8221; operator also performs multiple queries, one for each item in the provided list value where all other filters are the same and the &#8220;in&#8221; filter is replaced with an equal filter. The results are merged, in the order of the items in the list. If a query has more than 1 &#8220;in&#8221; filter, the query is performed as multiple queries, one for each combination of values in the &#8220;in&#8221; filters.</p>
+
+<p>A single query containing &#8220;notEqual&#8221; or &#8220;in&#8221; operators is limited to 30 sub-queries.</p>
+
+<pre><code>Date hireDate = ...;
+EmployeeMeta e = EmployeeMeta.get();
+List&lt;Employee&gt; list = Datastore.query(e)
+    .filter(e.lastName.equal("Smith"), e.hireDate.greaterThan(hireDate))
+    .asList();
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Java slim3 on Google App Engine]]></title>
