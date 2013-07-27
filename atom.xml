@@ -4,7 +4,7 @@
   <title><![CDATA[Yes,It's mE.]]></title>
   <link href="http://caoguangyao.github.com/atom.xml" rel="self"/>
   <link href="http://caoguangyao.github.com/"/>
-  <updated>2013-05-27T14:24:06+08:00</updated>
+  <updated>2013-07-27T09:11:58+08:00</updated>
   <id>http://caoguangyao.github.com/</id>
   <author>
     <name><![CDATA[Cao.Guangyao]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[http proxy via privoxy on mac]]></title>
+    <link href="http://caoguangyao.github.com/blog/2013/07/27/http-proxy-via-privoxy-on-mac/"/>
+    <updated>2013-07-27T08:49:00+08:00</updated>
+    <id>http://caoguangyao.github.com/blog/2013/07/27/http-proxy-via-privoxy-on-mac</id>
+    <content type="html"><![CDATA[<p>1 download privoxy from website and install it</p>
+
+<p>2 after installation check process</p>
+
+<pre><code>ps aux|grep privoxy
+</code></pre>
+
+<p>3 if you want change ssh  tunnel to http, do modification config file in</p>
+
+<pre><code>/usr/local/etc/privoxy/config
+</code></pre>
+
+<p>in listen-address</p>
+
+<pre><code>listen-address 127.0.0.1:8118
+</code></pre>
+
+<p>to</p>
+
+<pre><code>listen-address 0.0.0.0:8118
+</code></pre>
+
+<p>in forward-socks5</p>
+
+<pre><code>forward-socks5 / 127.0.0.1:9050 .
+</code></pre>
+
+<p>to your ssh tunnel. eg:</p>
+
+<pre><code>forward-socks5 / 192.168.1.106:7070 .
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Slim3 datastore and controller]]></title>

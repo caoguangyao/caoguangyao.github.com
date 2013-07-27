@@ -9,7 +9,7 @@
   <meta name="author" content="Cao.Guangyao">
 
   
-  <meta name="description" content="1.fix unicode garbled right click project->properties->Resource->Text file encoding->other->UTF-8 2.auto complete Windows->Preferences->Java->Editor &hellip;">
+  <meta name="description" content="say we have a model like that: class Data(models.Model): file_name = models.CharField(max_length=100) upload_file = models.FileField(upload_to='data &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,82 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/18/django-create-inmemoryfile/">Django Create Inmemoryfile</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-18T12:51:00+08:00" pubdate data-updated="true">Oct 18<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/10/18/django-create-inmemoryfile/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>say we have a model like that:</p>
+
+<pre><code>class Data(models.Model):
+    file_name = models.CharField(max_length=100)
+    upload_file = models.FileField(upload_to='data')
+</code></pre>
+
+<p>we what create a file in back,but not save to filesystem.
+so use StringIO create string first</p>
+
+<pre><code>from cStringIO import StringIO
+
+my_str = 'qwer\nasdf\m\n'
+
+buff = StringIO(my_str)
+
+buff.seek(0,2)
+</code></pre>
+
+<p>use InMemoryUploadFile to create the string file</p>
+
+<pre><code>from django.core.files.uploadedfile import InMemoryUploadedFile
+from app.models import Data
+file_name = 'myfile.txt'
+file_data = InMemoryUploadedFile(buf,'file',file_name,None,buff.tell(),None)
+
+d = Data(file_name = file_name)
+d.upload_file.save(file_name,file_data)
+d.save() 
+</code></pre>
+
+<p>untile now we create an InMemoryUploadedFile object and save it to our model.</p>
+
+<p>by the way we can use simpler way to create the file</p>
+
+<pre><code>from django.core.files.base import ContentFile
+
+file_data = ContentFile(buff.getvalue())
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -534,6 +610,10 @@ $ rake install
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/27/http-proxy-via-privoxy-on-mac/">http proxy via privoxy on mac</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/27/slim3-datastore-and-controller/">Slim3 datastore and controller</a>
       </li>
     
@@ -547,10 +627,6 @@ $ rake install
     
       <li class="post">
         <a href="/blog/2013/04/22/donki-useful-codes/">donki-useful-codes</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/16/django-connect-to-mssql/">Django connect to mssql</a>
       </li>
     
   </ul>
